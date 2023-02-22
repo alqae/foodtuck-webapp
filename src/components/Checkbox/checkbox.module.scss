@@ -1,0 +1,51 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/colors";
+@import "../../styles/base/helpers";
+
+.checkbox {
+  input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    margin-right: 8px;
+
+    &:before {
+      content: unicode("2713");
+      transition-property: background-color;
+      transition-duration: 300ms;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      border: 2px solid $color-black;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $color-white;
+      cursor: pointer;
+    }
+
+    &.checked::before {
+      background-color: map-get($theme-colors, primary);
+    }
+  }
+
+  label {
+    @include font(body, small, $color-black);
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &.error {
+    input[type="checkbox"] {
+      &:before {
+        border-color: map-get($theme-colors, error);
+      }
+    }
+
+    label,
+    a {
+      color: map-get($theme-colors, error);
+    }
+  }
+}

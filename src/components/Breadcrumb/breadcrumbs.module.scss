@@ -1,0 +1,32 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/colors";
+
+.container {
+  background-image: url(../../assets/images/banner-bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding-bottom: 108px;
+  padding-top: 108px;
+
+  > span {
+    display: block;
+    @include font(headings, xl, $color-white);
+    margin-bottom: 20px;
+  }
+
+  .breadcrumbs {
+    span {
+      @include font(body, large, $color-white);
+    }
+
+    svg {
+      fill: $color-white;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    span:last-of-type {
+      color: map-get($theme-colors, primary);
+    }
+  }
+}

@@ -1,0 +1,66 @@
+// Add custom variables & override bootstrap variables in this file.
+//
+$baseline: 16px;
+$max-width: 112.5rem; // 1800px;
+
+body {
+  --bs-body-color: map-get($grays, gray-900);
+}
+
+// Overrides BS spacer-variables-map
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.5,
+  // 8px
+  2: $spacer,
+  // 16px
+  3: $spacer * 1.5,
+  // 24px
+  4: $spacer * 2,
+  // 32px
+  5: $spacer * 2.5,
+  // 40px
+  6: $spacer * 3,
+  // 48px
+  7: $spacer * 3.5,
+  // 56px
+  8: $spacer * 4,
+  // 64px
+  9: $spacer * 4.5,
+  // 72px
+  10: $spacer * 5,
+  // 80px
+  12: $spacer * 6,
+  // 96px
+  15: $spacer * 7.5,
+  // 120px
+  20: $spacer * 10,
+  // 160px
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  max: 1600px,
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+// Prefix for :root CSS variables
+
+$variable-prefix:             bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix:                      $variable-prefix !default;
+
+$grid-gutter-width:           1.5rem !default;
+$container-padding-x: $grid-gutter-width !default;

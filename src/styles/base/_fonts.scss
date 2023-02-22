@@ -1,0 +1,181 @@
+// Only add mixins, maps to this file, any typography styles
+// should be in the styles/_typography.scss partial.
+@use "sass:map";
+@use "sass:math";
+@use "./helpers";
+@use "./colors";
+@use "./variables";
+
+// Fonts
+$font-family-sans-serif: "Helvatica", sans-serif;
+$font-family-inter: "Inter", monospace;
+$font-size-base: 1.25rem; // 20px
+$line-height-base: 1.8; // 36px
+
+$fonts: (
+  headings: (
+    xxl: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 60px,
+      "font-size-desktop": 60px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.14,
+      "line-height-desktop": 1.14,
+      "text-transform": false,
+    ),
+    xl: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 48px,
+      "font-size-desktop": 48px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.18,
+      "line-height-desktop": 1.18,
+      "text-transform": false,
+    ),
+    lg: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 40px,
+      "font-size-desktop": 40px,
+      "font-weight": 700,
+      "line-height-mobile": 1.2,
+      "line-height-desktop": 1.2,
+      "text-transform": false,
+    ),
+    md: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 32px,
+      "font-size-desktop": 32px,
+      "font-weight": 700,
+      "letter-spacing": -0.01em,
+      "line-height-mobile": 1.25,
+      "line-height-desktop": 1.25,
+      "text-transform": false,
+    ),
+    sm: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 24px,
+      "font-size-desktop": 24px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.35,
+      "line-height-desktop": 1.35,
+      "text-transform": false,
+    ),
+    xs: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 20px,
+      "font-size-desktop": 20px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.4,
+      "line-height-desktop": 1.4,
+      "text-transform": false,
+    ),
+  ),
+  body: (
+    large: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 20px,
+      "font-size-desktop": 20px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.4,
+      "line-height-desktop": 1.4,
+      "text-transform": false,
+    ),
+    medium: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 18px,
+      "font-size-desktop": 18px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.45,
+      "line-height-desktop": 1.45,
+      "text-transform": false,
+    ),
+    normal: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 16px,
+      "font-size-desktop": 16px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.35,
+      "line-height-desktop": 1.35,
+      "text-transform": false,
+    ),
+    small: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 14px,
+      "font-size-desktop": 14px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.6,
+      "line-height-desktop": 1.6,
+      "text-transform": false,
+    ),
+  ),
+  navbar: (
+    desktop: (
+      "family": $font-family-inter,
+      "font-size-mobile": 16px,
+      "font-size-desktop": 16px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.5,
+      "line-height-desktop": 1.5,
+    ),
+    "mobile": (
+      "family": $font-family-inter,
+      "font-size-mobile": 20px,
+      "font-size-desktop": 26px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.5,
+      "line-height-desktop": 1.8,
+    ),
+  ),
+);
+
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+@mixin font(
+  $category: headings,
+  $size: md,
+  $color: map.get($grays, gray-100)
+) {
+  $sizes: map.get($fonts, $category); // = headings, body, navbar
+  $values: map.get($sizes, $size); // = xxl, xl, lg, md, sm, xs
+  $min-font-size: map.get($values, "font-size-mobile");
+  $max-font-size: map.get($values, "font-size-desktop");
+  $min-line-height: map.get($values, "line-height-mobile");
+  $max-line-height: map.get($values, "line-height-desktop");
+  // $min-vw: map.get($grid-breakpoints, "md");
+  // $max-vw: map.get($grid-breakpoints, "xxl");
+
+  color: $color;
+  font-family: map.get($values, "family");
+  font-weight: map.get($values, "font-weight");
+  font-size: $min-font-size;
+  line-height: $min-line-height;
+  // @include media-breakpoint-up(md) {
+  //   font-size: calc(
+  //     #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+  //       ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+  //   );
+  // }
+
+  // @include media-breakpoint-up(xxl) {
+  //   font-size: $max-font-size;
+  //   line-height: $max-line-height;
+  // }
+
+  letter-spacing: map.get($values, "letter-spacing");
+
+  @if map.get($values, "text-transform") {
+    text-transform: map.get($values, "text-transform");
+  }
+}

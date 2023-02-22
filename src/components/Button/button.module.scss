@@ -1,0 +1,42 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/colors";
+
+.button {
+  border: 3px solid map-get($theme-colors, primary);
+  transition-property: background-color;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: none;
+  outline: none;
+  @include font(body, normal, $color-white);
+  background-color: map-get($theme-colors, primary);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-right: 45px;
+  padding-left: 45px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-white;
+    color: map-get($theme-colors, primary);
+  }
+}
+
+.large {
+  padding: 16px 48px;
+}
+
+.soft {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+// .small {}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.fullWidth {
+  width: 100%;
+}

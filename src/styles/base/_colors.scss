@@ -1,0 +1,77 @@
+// Adjust or add Colors:
+$orange: (
+  "orange-100": #FFE2B6,
+  "orange-200": #FFCF86,
+  "orange-300": #FFBC56,
+  "orange-400": #FFAD31,
+  "orange-500": #FF9F0D,
+  "orange-600": #FF970B,
+  "orange-700": #FF8D09,
+  "orange-800": #FF8307,
+  "orange-900": #FF7203,
+) !default;
+
+$mustard: (
+  "mustard-100": #E7DBC1,
+  "mustard-200": #D7C397,
+  "mustard-300": #C7AB6D,
+  "mustard-400": #BB994E,
+  "mustard-500": #AF872F,
+  "mustard-600": #A87F2A,
+  "mustard-700": #9F7423,
+  "mustard-800": #966A1D,
+  "mustard-900": #865712,
+) !default;
+
+$beach: (
+  "beach-100": #EBE1D3,
+  "beach-200": #DECDB6,
+  "beach-300": #D0B898,
+  "beach-400": #C6A982,
+  "beach-500": #BC9A6C,
+  "beach-600": #B69264,
+  "beach-700": #AD8859,
+  "beach-800": #A57E4F,
+  "beach-900": #976C3D,
+) !default;
+
+$grays: (
+  "gray-100": #1E1E1E,
+  "gray-200": #1D1D1D,
+  "gray-300": #282828,
+  "gray-400": #4F4F4F,
+  "gray-500": #333333,
+  "gray-600": #828282,
+) !default;
+
+$states: (
+  "info": #2F80ED,
+  "success": #27AE60,
+  "warning": #E2B93B,
+  "error": #EB5757,
+) !default;
+
+$filters: (
+  "primary": invert(28%) sepia(46%) saturate(5276%) hue-rotate(205deg)
+    brightness(97%) contrast(104%),
+  "reverse": invert(100%) sepia(95%) saturate(17%) hue-rotate(273deg)
+    brightness(105%) contrast(103%),
+  "gray-1100": invert(1%) sepia(7%) saturate(2698%) hue-rotate(205deg)
+    brightness(81%) contrast(97%),
+) !default;
+
+// Example usage:
+$color-white: #fff;
+$color-black: #1E1E1E;
+$color-clear: transparent;
+
+// Map to Bootstrap colors:
+$theme-colors: (
+  "primary": map-get($orange, orange-500),
+  "secondary": map-get($mustard, mustard-500),
+  "info": map-get($states, info),
+  "success": map-get($states, success),
+  "warning": map-get($states, warning),
+  "error": map-get($states, error),
+  "white": $color-white,
+);

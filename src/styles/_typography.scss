@@ -1,0 +1,93 @@
+// Global typography styles.
+// See also ./vars/_typography.scss.
+
+@font-face {
+  font-family: $font-family-sans-serif;
+  src: url("../../public/fonts/Helvetica/Helvetica-Regular.woff2") format("woff2"),
+    url("../../public/fonts/Helvetica/Helvetica-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+.App-header p {
+  font-family: $font-family-sans-serif;
+}
+
+@font-face {
+  font-family: $font-family-sans-serif;
+  src: url("../../public/fonts/Helvetica/Helvetica-Itallic.woff2") format("woff2"),
+    url("../../public/fonts/Helvetica/Helvetica-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-sans-serif;
+  src: url("../../public/fonts/Helvetica/Helvetica-Medium.woff2") format("woff2"),
+    url("../../public/fonts/Helvetica/Helvetica-Medium.woff") format("woff");
+  font-weight: 600;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-sans-serif;
+  src: url("../../public/fonts/Helvetica/Helvetica-Bold.woff2") format("woff2"),
+    url("../../public/fonts/Helvetica/Helvetica-Bold.woff") format("woff");
+  font-weight: bold;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-inter;
+  src: url("../../public/fonts/Inter/Inter-Regular.woff2") format("woff2"),
+    url("../../public/fonts/Inter/Inter-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @include media-breakpoint-down(md) {
+    font-size: 0.875rem; // 14px
+    line-height: 1.8;
+  }
+}
+
+p:only-child {
+  margin-bottom: 0;
+}
+
+// Default font sizing for headings
+h2 {
+  @include font(headings, md);
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  @include font(headings, sm);
+  margin-bottom: 1rem;
+}
+
+// blockquote {
+//   @include font(blockquote, all, $color-black);
+
+//   + figcaption {
+//     @include font(bodycopy, md, $mc-blue);
+//   }
+// }
+
+// Spacing between paragraphs and headings (for WYSIWYG content)
+// p {
+//   + h2,
+//   + h3,
+//   + h4,
+//   + h5,
+//   + h6 {
+//     @include mt(8);
+//   }
+// }
