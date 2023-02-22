@@ -5,7 +5,7 @@ import type { RootState, AppDispatch } from './store/store'
 
 export const useBodyScrollLock = (): [boolean, React.Dispatch<boolean>] => {
   const bodyStyle = document.body.style
-  const [bodyScrollLock, setBodyScrollLock] = React.useState(bodyStyle.overflowY == 'hidden')
+  const [bodyScrollLock, setBodyScrollLock] = React.useState(bodyStyle.overflowY === 'hidden')
 
   React.useEffect(() => {
     document.body.style.overflow = bodyScrollLock ? 'hidden' : 'auto'

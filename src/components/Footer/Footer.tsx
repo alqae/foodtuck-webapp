@@ -13,7 +13,7 @@ import IconClockWise from '../../assets/icons/clocwise.svg'
 interface Props {
 }
 
-export default ({ }: Props) => {
+const Footer: React.FC<Props> = () => {
   const { register, handleSubmit } = useForm<{ emailToSubscribe: string }>();
   const onSubmit = (data: { emailToSubscribe: string }) => {
     console.log(data)
@@ -130,23 +130,23 @@ export default ({ }: Props) => {
           <span>{`Copyright © ${year} by Ayeman. All Rights Reserved.`}</span>
 
           <div className="social d--f ai--c">
-            <a className={`${styles.iconButton} ${styles.facebook}`}>
+            <a href="/" className={`${styles.iconButton} ${styles.facebook}`}>
               <img src={IconFacebook} alt="Facebook" />
             </a>
 
-            <a className={`${styles.iconButton} ${styles.twitter}`}>
+            <a href="/" className={`${styles.iconButton} ${styles.twitter}`}>
               <img src={IconTwitter} alt="Twitter" />
             </a>
 
-            <a className={`${styles.iconButton} ${styles.instagram}`}>
+            <a href="/" className={`${styles.iconButton} ${styles.instagram}`}>
               <img src={IconInstagram} alt="Instagram" />
             </a>
 
-            <a className={`${styles.iconButton} ${styles.youtube}`}>
+            <a href="/" className={`${styles.iconButton} ${styles.youtube}`}>
               <img src={IconYouTube} alt="YouTube" />
             </a>
 
-            <a className={`${styles.iconButton} ${styles.pinterest}`}>
+            <a href="/" className={`${styles.iconButton} ${styles.pinterest}`}>
               <img src={IconPinterest} alt="Pinterest" />
             </a>
           </div>
@@ -155,3 +155,7 @@ export default ({ }: Props) => {
     </footer>
   )
 }
+
+Footer.defaultProps = {}
+
+export default Footer

@@ -35,7 +35,7 @@ const formResetSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Passwords do not match")
 })
 
-export default ({ }: Props) => {
+const ForgotPassword: React.FC<Props> = () => {
   const navigate = useNavigate()
   const [token, setToken] = React.useState<string | null>(null)
   const [forgotPassowrd] = useForgotPasswordMutation()
@@ -136,3 +136,7 @@ export default ({ }: Props) => {
     </React.Fragment>
   )
 }
+
+ForgotPassword.defaultProps = {}
+
+export default ForgotPassword

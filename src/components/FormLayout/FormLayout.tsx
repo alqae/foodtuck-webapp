@@ -12,16 +12,15 @@ interface Props {
   children?: React.ReactNode
 }
 
-export default (_props: Props) => {
+const FormLayout: React.FC<Props> = () => {
   const navigate = useNavigate()
   const token = useSelector<RootState>((state) => state.auth.token)
 
   React.useEffect(() => {
     if (token) {
-      console.warn('passou');
       navigate('/', { replace: true })
     }
-  }, [token])
+  }, [token, navigate])
 
   return (
     <main>
@@ -42,3 +41,7 @@ export default (_props: Props) => {
     </main>
   )
 }
+
+FormLayout.defaultProps = {}
+
+export default FormLayout

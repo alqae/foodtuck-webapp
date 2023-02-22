@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 interface Props { }
 
-export default ({ }: Props) => {
+const NoMatch: React.FC<Props> = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.box}>
@@ -16,3 +16,7 @@ export default ({ }: Props) => {
     </div>
   )
 }
+
+NoMatch.defaultProps = {}
+
+export default NoMatch

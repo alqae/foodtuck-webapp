@@ -34,7 +34,7 @@ const formSchema = Yup.object().shape({
     .max(12, "Password cannot exceed more than 12 characters"),
 })
 
-export default (_: Props) => {
+const SignUp: React.FC<Props> = () => {
   const [signUp] = useSignUpMutation()
   const navigate = useNavigate()
 
@@ -137,3 +137,7 @@ export default (_: Props) => {
     </React.Fragment>
   )
 }
+
+SignUp.defaultProps = {}
+
+export default SignUp

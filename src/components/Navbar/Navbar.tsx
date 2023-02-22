@@ -3,7 +3,6 @@ import styles from './navbar.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import { GrClose } from 'react-icons/gr'
 import {
   AiOutlineSearch,
   AiOutlineUser,
@@ -19,16 +18,17 @@ import { RootState } from '../../store'
 
 interface Props { }
 
-export default ({ }: Props) => {
+const Navbar: React.FC<Props> = () => {
   const dispatch = useDispatch()
   const [showMenu, setShowMenu] = React.useState(false)
   const isAuth = useSelector<RootState>((state) => !!state.auth.token)
   const logOut = () => dispatch({ type: AuthActions.clearToken })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, toogleScroll] = useBodyScrollLock()
 
   React.useEffect(() => {
     toogleScroll(showMenu)
-  }, [showMenu])
+  }, [showMenu, toogleScroll])
 
   return (
     <div className={styles.navbar}>
@@ -83,20 +83,20 @@ export default ({ }: Props) => {
         </div>
 
         <div className={styles.actions}>
-          <NavLink to="search">
+          <NavLink className={styles.link} to="search">
             <AiOutlineSearch size="24px" />
           </NavLink>
-          <NavLink to="profile">
+          <NavLink className={styles.link} to="profile">
             <AiOutlineUser size="24px" />
           </NavLink>
-          <NavLink to="car">
+          <NavLink className={styles.link} to="car">
             <AiOutlineShopping size="24px" />
           </NavLink>
           {
             isAuth ? (
-              <a onClick={logOut}>
+              <div className={styles.link} onClick={logOut}>
                 <AiOutlineLogout size="24px" />
-              </a>
+              </div>
             ) : <></>
           }
         </div>
@@ -111,3 +111,7 @@ export default ({ }: Props) => {
     </div>
   )
 }
+
+Navbar.defaultProps = {}
+
+export default Navbar;

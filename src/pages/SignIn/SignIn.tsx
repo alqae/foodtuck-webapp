@@ -29,7 +29,7 @@ const formSchema = Yup.object().shape({
     .max(12, "Password cannot exceed more than 12 characters"),
 })
 
-export default ({ }: Props) => {
+const SignIn: React.FC<Props> = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [signIn] = useSignInMutation()
@@ -71,7 +71,7 @@ export default ({ }: Props) => {
         }
       )
     }
-  }, [])
+  }, [activateUser, dispatch, navigate, searchParams])
 
   const onSubmit = async (data: UserSignUpForm) => {
     await toast.promise(
@@ -143,3 +143,7 @@ export default ({ }: Props) => {
     </React.Fragment>
   );
 }
+
+SignIn.defaultProps = {}
+
+export default SignIn

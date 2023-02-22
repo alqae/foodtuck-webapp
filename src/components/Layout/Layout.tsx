@@ -13,7 +13,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-export default (_props: Props) => {
+const Layout: React.FC<Props> = () => {
   const dispatch = useDispatch()
   const isIndexPage = useMatch('/')
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ export default (_props: Props) => {
     } else {
       navigate('/auth/sign-in', { replace: true })
     }
-  }, [token])
+  }, [token, dispatch, navigate])
 
   return (
     <main className={styles.layout}>
@@ -48,3 +48,7 @@ export default (_props: Props) => {
     </main>
   )
 }
+
+Layout.defaultProps = {}
+
+export default Layout

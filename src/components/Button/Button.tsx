@@ -9,14 +9,14 @@ interface Props {
   className?: string
 }
 
-export default ({
+const Button: React.FC<Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
   children,
   className,
-  soft = false,
-  rounded = false,
-  fullWidth = true,
+  soft,
+  rounded,
+  fullWidth,
   ...props
-}: Props & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
+}) => {
   return (
     <button
       className={`
@@ -30,3 +30,12 @@ export default ({
     </button>
   );
 }
+
+Button.defaultProps = {
+  type: 'button',
+  soft: false,
+  rounded: false,
+  fullWidth: true,
+}
+
+export default Button

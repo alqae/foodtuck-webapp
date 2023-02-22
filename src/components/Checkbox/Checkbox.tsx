@@ -6,29 +6,35 @@ interface Props {
   label: string | React.ReactNode
   required: boolean
   control: Control<any, any>
+}
 
+const Checkbox: React.FC<Props> = ({ name, control, label, required }) => (
+  <Controller
+    name={name}
+    control={control}
+    rules={{ required }}
+    render={({ field, fieldState: { error } }) => {
+      const checkedClass = field.value ? styles.checked : ''
+      const errorClass = error ? styles.error : ''
+      return (
+        <div className={`${styles.checkbox} ${errorClass} d--f ai--c`}>
+          <input
+            id={name}
+            type="checkbox"
+            className={checkedClass}
+            {...field}
+          />
+          <label htmlFor={name}>{label}</label>
+        </div>
+      )
+    }}
+  />
+)
+
+Checkbox.defaultProps = {
+  required: false,
+  name: '',
+  label: '',
 }
-export default ({ name, control, label, required }: Props) => {
-  return (
-    <Controller
-      name={name}
-      control={control}
-      rules={{ required }}
-      render={({ field, fieldState: { error } }) => {
-        const checkedClass = field.value ? styles.checked : ''
-        const errorClass = error ? styles.error : ''
-        return (
-          <div className={`${styles.checkbox} ${errorClass} d--f ai--c`}>
-            <input
-              id={name}
-              type="checkbox"
-              className={checkedClass}
-              {...field}
-            />
-            <label htmlFor={name}>{label}</label>
-          </div>
-        )
-      }}
-    />
-  )
-}
+
+export default Checkbox

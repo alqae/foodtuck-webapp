@@ -6,7 +6,7 @@ import { AiOutlineRight } from 'react-icons/ai'
 
 interface Props { }
 
-export default ({ }: Props) => {
+const Breadcrumb: React.FC<Props> = () => {
   const breadcrumbs = useBreadcrumbs();
 
   return (
@@ -26,3 +26,7 @@ export default ({ }: Props) => {
     </div>
   )
 }
+
+Breadcrumb.defaultProps = {}
+
+export default Breadcrumb

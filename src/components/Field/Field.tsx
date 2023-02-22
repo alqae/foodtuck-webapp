@@ -14,7 +14,15 @@ interface Props {
   suffixIcon?: React.ReactNode
 }
 
-export default ({ type, name, label, placeholder, control, suffixIcon, rules }: Props) => {
+const Field: React.FC<Props> = ({
+  type,
+  name,
+  label,
+  placeholder,
+  control,
+  suffixIcon,
+  rules,
+}) => {
   const [isFocused, setIsFocused] = React.useState(false);
 
   switch (type) {
@@ -51,3 +59,14 @@ export default ({ type, name, label, placeholder, control, suffixIcon, rules }: 
       );
   }
 }
+
+Field.defaultProps = {
+  type: 'text',
+  placeholder: '',
+  label: '',
+  name: '',
+  rules: {},
+  suffixIcon: null,
+}
+
+export default Field

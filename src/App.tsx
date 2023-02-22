@@ -16,7 +16,7 @@ import './styles/global.scss'
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      {/* <ScrollRestoration /> */}
+      <ScrollRestoration />
 
       <Route path="auth" element={<FormLayout />}>
         <Route path="sign-up" element={<SignUp />} breadcrumb="Sign up" />
