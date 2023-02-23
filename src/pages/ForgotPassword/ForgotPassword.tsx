@@ -54,31 +54,33 @@ const ForgotPassword: React.FC<Props> = () => {
   const onSubmit = async (data: ForgotPasswordForm) => {
     await toast.promise(
       new Promise(async (resolve, reject) => {
-        var result: boolean
+        try {
+          var result: boolean
 
-        if (token) {
-          const response = await resetPassword({ variables: { token, password: data.password } })
-          result = response.data?.resetPassword || false
+          if (token) {
+            const response = await resetPassword({ variables: { token, password: data.password } })
+            result = response.data?.resetPassword || false
+
+            if (result) {
+              navigate("/auth/sign-in")
+            }
+          } else {
+            const response = await forgotPassowrd({ variables: { email: data.email } })
+            result = response.data?.forgotPassword || false
+          }
 
           if (result) {
-            navigate("/auth/sign-in")
+            methods.setValue("email", "")
+            resolve(result)
           }
-        } else {
-          const response = await forgotPassowrd({ variables: { email: data.email } })
-          result = response.data?.forgotPassword || false
-        }
-
-        if (result) {
-          methods.reset()
-          resolve(result)
-        } else {
-          reject("Something went wrong")
+        } catch (error) {
+          reject(error)
         }
       }),
       {
         loading: 'Loading...',
         success: token ? 'Password reset successfully' : 'Link sent successfully',
-        error: (error) => <b>{error}</b>,
+        error: (error) => <b>{error.message}</b>,
       }
     );
   }
@@ -123,7 +125,12 @@ const ForgotPassword: React.FC<Props> = () => {
           )
         }
 
-        <Button soft className='m-t-sm m-b-md'>{token ? "Reset Password" : "Send Link"}</Button>
+        <Button
+          soft
+          type="submit"
+          className="m-t-sm m-b-md">
+            {token ? "Reset Password" : "Send Link"}
+          </Button>
       </form>
 
       <NavLink to="/auth/sign-up" className="d--f jc--fe m-b-md">

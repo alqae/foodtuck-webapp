@@ -5,7 +5,7 @@ import {
   createBrowserRouter
 } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
-import { ScrollRestoration } from 'react-router-dom'
+// import { ScrollRestoration } from 'react-router-dom'
 import { Route } from 'use-react-router-breadcrumbs'
 
 import { Fallback, FormLayout, Layout, NoMatch } from './components'
@@ -13,10 +13,10 @@ import { Home, SignUp, SignIn, ForgotPassword } from './pages'
 
 import './styles/global.scss'
 
-let router = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <ScrollRestoration />
+      {/* <ScrollRestoration /> */}
 
       <Route path="auth" element={<FormLayout />}>
         <Route path="sign-up" element={<SignUp />} breadcrumb="Sign up" />

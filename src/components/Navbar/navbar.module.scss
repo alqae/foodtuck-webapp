@@ -91,7 +91,8 @@
       color: $color-white;
     }
 
-    a {
+    .link {
+      display: inline-block;
       margin-right: 16px;
 
       &:last-child {

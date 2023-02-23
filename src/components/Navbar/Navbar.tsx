@@ -40,43 +40,43 @@ const Navbar: React.FC<Props> = () => {
         <div className={styles.menu}>
           <NavLink
             to="/"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Home
           </NavLink>
           <NavLink
             to="/menu"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Menu
           </NavLink>
           <NavLink
             to="/blog"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Blog
           </NavLink>
           <NavLink
             to="/pages"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Pages
           </NavLink>
           <NavLink
             to="/about"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             About
           </NavLink>
           <NavLink
             to="/shop"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Shop
           </NavLink>
           <NavLink
             to="/contact"
-            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Contact
           </NavLink>

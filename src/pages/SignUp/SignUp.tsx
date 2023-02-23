@@ -52,7 +52,8 @@ const SignUp: React.FC<Props> = () => {
   const onSubmit = async (data: UserSignUpForm) => {
     await toast.promise(
       new Promise(async (resolve, reject) => {
-        const result = await signUp({
+        try {
+          const result = await signUp({
             variables: {
               email: data.email,
               firstName: data.firstName,
@@ -64,14 +65,15 @@ const SignUp: React.FC<Props> = () => {
           if (result.data?.signUp) {
             navigate("/auth/sign-in")
             resolve(result.data?.signUp)
-          } else {
-            reject("Something went wrong")
           }
+        } catch (error) {
+          reject(error)
+        }
       }),
       {
         loading: 'Saving...',
         success: 'Account created successfully',
-        error: (error) => <b>{error}</b>,
+        error: (error) => <b>{error.message}</b>,
       }
     );
   };
@@ -124,7 +126,7 @@ const SignUp: React.FC<Props> = () => {
           }
         />
 
-        <Button soft className='m-t-lg m-b-md'>Sign Up</Button>
+        <Button type="submit" soft className='m-t-lg m-b-md'>Sign Up</Button>
       </form>
 
       <NavLink to="/auth/sign-in" className="d--f jc--fe m-b-md">

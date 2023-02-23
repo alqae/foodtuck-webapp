@@ -76,28 +76,30 @@ const SignIn: React.FC<Props> = () => {
   const onSubmit = async (data: UserSignUpForm) => {
     await toast.promise(
       new Promise(async (resolve, reject) => {
-        const result = await signIn({
-          variables: {
-            email: data.email,
-            password: data.password,
-          },
-        })
-
-        if (result.data?.signIn.token) {
-          dispatch({
-            type: AuthActions.setToken,
-            payload: result.data?.signIn.token
+        try {
+          const result = await signIn({
+            variables: {
+              email: data.email,
+              password: data.password,
+            },
           })
-          navigate("/")
-          resolve(result)
-        }
 
-        reject("Invalid login")
+          if (result.data?.signIn.token) {
+            dispatch({
+              type: AuthActions.setToken,
+              payload: result.data?.signIn.token
+            })
+            navigate("/")
+            resolve(result)
+          }
+        } catch (error) {
+          reject(error)
+        }
       }),
       {
         loading: 'Loading...',
         success: 'Login successfully',
-        error: (error) => <b>{error?.message ?? error}</b>,
+        error: (error) => <b>{error.message}</b>,
       }
     );
   }
@@ -130,7 +132,7 @@ const SignIn: React.FC<Props> = () => {
           label="Remember me?"
         />
 
-        <Button soft className='m-t-md m-b-md'>Sign In</Button>
+        <Button type="submit" soft className='m-t-md m-b-md'>Sign In</Button>
       </form>
 
       <NavLink to="/auth/sign-up" className="d--f jc--fe m-b-md">
