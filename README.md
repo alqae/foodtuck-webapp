@@ -1,3 +1,5 @@
+[![Azure Static Web Apps CI/CD](https://github.com/alqae/foodtuck/actions/workflows/azure-static-web-apps-delightful-sand-0dae0e310.yml/badge.svg)](https://github.com/alqae/foodtuck/actions/workflows/azure-static-web-apps-delightful-sand-0dae0e310.yml)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
