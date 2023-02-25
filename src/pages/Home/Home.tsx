@@ -1,15 +1,14 @@
 import React from 'react'
 import Rating from 'react-star-review'
-import { animate, motion } from 'framer-motion'
+import { animate } from 'framer-motion'
 import styles from './home.module.scss'
-import { BsPlay } from 'react-icons/bs'
 import { GiChefToque } from 'react-icons/gi'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { Swiper, SwiperSlide } from 'swiper/react'
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
 import { FaCookieBite, FaHamburger, FaQuoteRight, FaWineGlassAlt } from 'react-icons/fa'
 import { IoFastFoodOutline, IoRestaurantOutline, IoPizzaOutline } from 'react-icons/io5'
+// import required modules
+import { Autoplay, Pagination } from 'swiper'
 
 import TestimonialUserPlaceholder from '../../assets/images/testimonial.png'
 import FoodCategoryThree from '../../assets/images/food-category-3.png'
@@ -122,9 +121,9 @@ const Home: React.FC<Props> = () => {
           </div>
 
           <div className="col-6_sm-12 grid">
-            <img src={AboutImageOne} className="col-12" alt="About Image One" />
-            <img src={AboutImageTwo} className="col-6" alt="About Image Two" />
-            <img src={AboutImageThree} className="col-6" alt="About Image Three" />
+            <img src={AboutImageOne} className="col-12" alt="About One" />
+            <img src={AboutImageTwo} className="col-6" alt="About Two" />
+            <img src={AboutImageThree} className="col-6" alt="About Three" />
           </div>
         </section>
 
@@ -234,7 +233,7 @@ const Home: React.FC<Props> = () => {
             {chefs.map((chef, index) => (
               <SwiperSlide
                 key={index}
-                className={`${styles.card} mb-8 ${index != (chefs.length - 1) ? 'mr-3' : ''}`}
+                className={`${styles.card} mb-8 ${index !== (chefs.length - 1) ? 'mr-3' : ''}`}
               >
                 <img src={chef.avatar} alt={chef.name} />
 

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
-import { Link, redirect, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useActivateUserMutation, useSignInMutation } from '../../generated/graphql'
 import { Button, Checkbox, Field } from '../../components'
@@ -34,6 +34,7 @@ const formSchema = Yup.object().shape({
 
 const SignIn: React.FC<Props> = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [signIn] = useSignInMutation()
   const [activateUser] = useActivateUserMutation()
   const [searchParams] = useSearchParams()
@@ -59,7 +60,7 @@ const SignIn: React.FC<Props> = () => {
                 type: AuthActions.setToken,
                 payload: result.data?.activeUser.token
               })
-              redirect("/")
+              navigate("/", { replace: true })
               resolve(result)
             }
           } catch (error) {
@@ -73,7 +74,7 @@ const SignIn: React.FC<Props> = () => {
         }
       )
     }
-  }, [activateUser, dispatch, redirect, searchParams])
+  }, [activateUser, dispatch, navigate, searchParams])
 
   const onSubmit = async (data: UserSignUpForm) => {
     await toast.promise(
@@ -91,7 +92,7 @@ const SignIn: React.FC<Props> = () => {
               type: AuthActions.setToken,
               payload: result.data?.signIn.token
             })
-            redirect("/")
+            navigate("/", { replace: true })
             resolve(result)
           }
         } catch (error) {

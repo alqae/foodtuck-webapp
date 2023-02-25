@@ -9,7 +9,7 @@ import { Button } from '../Button'
 
 interface Props { }
 
-const Hero: React.FC<Props> = ({ }: Props) => {
+const Hero: React.FC<Props> = () => {
   return (
     <motion.div
       initial={{ transform: `translateY(-100%)` }}
@@ -47,7 +47,7 @@ const Hero: React.FC<Props> = ({ }: Props) => {
           transition={{ delay: 0.25, duration: 0.25 }}
           className={`${styles.imageContainer} col-6 d--f jc--c ai--c`}
         >
-          <img src={HeroImage} />
+          <img src={HeroImage} alt="Hero" />
         </motion.div>
       </div>
     </motion.div>

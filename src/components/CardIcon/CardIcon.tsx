@@ -19,7 +19,7 @@ const CardIcon: React.FC<Props> = ({
   rounded
 }) => {
   return (
-    <div className={`${styles.cardIcon} d--f ${horientation == 'vertical' ? `${styles.vertical} fd--c` : 'fd--r'} ${containerClassName ?? ''}`}>
+    <div className={`${styles.cardIcon} d--f ${horientation === 'vertical' ? `${styles.vertical} fd--c` : 'fd--r'} ${containerClassName ?? ''}`}>
       <div className={`${styles.icon} d--f jc--c ai--c ${rounded && styles.rounded}`}>
         {typeof icon == 'string' ? <img src={icon} alt="icon" /> : icon}
       </div>
