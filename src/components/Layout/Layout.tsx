@@ -30,7 +30,7 @@ const Layout: React.FC<Props> = () => {
           }
         })
     } else {
-      navigate('/auth/sign-in', { replace: true })
+      // navigate('/auth/sign-in', { replace: true })
     }
   }, [token, dispatch, navigate])
 
