@@ -4,8 +4,10 @@ import styles from './button.module.scss'
 interface Props {
   children?: React.ReactNode
   soft?: boolean
-  rounded?: boolean,
-  fullWidth?: boolean,
+  rounded?: boolean
+  circular?: boolean
+  fullWidth?: boolean
+  transparent?: boolean
   className?: string
 }
 
@@ -15,6 +17,8 @@ const Button: React.FC<Props & React.DetailedHTMLProps<React.ButtonHTMLAttribute
   soft,
   rounded,
   fullWidth,
+  circular,
+  transparent,
   ...props
 }) => {
   return (
@@ -24,6 +28,8 @@ const Button: React.FC<Props & React.DetailedHTMLProps<React.ButtonHTMLAttribute
         ${soft && styles.soft}
         ${rounded && styles.rounded}
         ${fullWidth && styles.fullWidth}
+        ${circular && styles.circular}
+        ${transparent && styles.transparent}
         ${className}
       `} {...props}
       >{children}

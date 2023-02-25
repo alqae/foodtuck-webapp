@@ -1,10 +1,11 @@
 import React from 'react'
 import * as Yup from 'yup'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
-import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useForgotPasswordMutation, useResetPasswordMutation } from '../../generated/graphql'
 import { Button, Field } from '../../components'
@@ -91,7 +92,12 @@ const ForgotPassword: React.FC<Props> = () => {
   }, [searchParams])
 
   return (
-    <React.Fragment>
+    <motion.div
+      initial={{ transform: `translateY(${!!searchParams.get('token') ? '-100%' : '100%'})` }}
+      animate={{ transform: "translateY(0)" }}
+      exit={{ transform: "translateY(100%)" }}
+      transition={{ delay: 0, duration: 0.25 }}
+    >
       <h3>{token ? "Reset Password" : "Forgot Password"}</h3>
 
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -128,19 +134,20 @@ const ForgotPassword: React.FC<Props> = () => {
         <Button
           soft
           type="submit"
-          className="m-t-sm m-b-md">
+          className="mb-3 mt-3"
+        >
             {token ? "Reset Password" : "Send Link"}
           </Button>
       </form>
 
-      <NavLink to="/auth/sign-up" className="d--f jc--fe m-b-md">
+      <Link to="/auth/sign-up" className="d--f jc--fe mb-2">
         Create a new acccount
-      </NavLink>
+      </Link>
 
-      <NavLink to="/auth/sign-in" className="d--f jc--fe">
+      <Link to="/auth/sign-in" className="d--f jc--fe">
         Already have an account?
-      </NavLink>
-    </React.Fragment>
+      </Link>
+    </motion.div>
   )
 }
 

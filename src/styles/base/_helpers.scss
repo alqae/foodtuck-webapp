@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "./variables";
 // Add custom mixins, functions, etc. to this file.
 //
 // Breakpoint viewport sizes and media queries.
@@ -398,54 +399,140 @@
   @return unquote("\"")+unquote(str-insert($str, "\\", 1))+unquote("\"");
 }
 
-
-$sizeUnit: rem;
-$marginKey: 'm';
-$paddingKey: 'p';
-$separator: '-';
-$sizes: (
-  ('none', 0),
-  ('xxs', 0.125),
-  ('xs', 0.25),
-  ('sm', 0.5),
-  ('md', 1),
-  ('lg', 2),
-  ('xl', 4),
-  ('xxl', 8),
-);
-$positions: (
-  ('t', 'top'),
-  ('r', 'right'),
-  ('b', 'bottom'),
-  ('l', 'left')
-);
-
-@function sizeValue($key, $value) {
-  @return if($key =='none', 0, $value + $sizeUnit);
+.text-center {
+  text-align: center;
 }
 
-@each $size in $sizes {
-  $sizeKey: nth($size, 1);
-  $sizeValue: nth($size, 2);
+// $sizeUnit: rem;
+// $marginKey: 'm';
+// $paddingKey: 'p';
+// $separator: '-';
+// $sizes: (
+//   ('none', 0),
+//   ('xxs', 0.125),
+//   ('xs', 0.25),
+//   ('sm', 0.5),
+//   ('md', 1),
+//   ('lg', 2),
+//   ('xl', 4),
+//   ('xxl', 8),
+// );
+// $positions: (
+//   ('t', 'top'),
+//   ('r', 'right'),
+//   ('b', 'bottom'),
+//   ('l', 'left')
+// );
 
-  .#{$marginKey}#{$separator}#{$sizeKey} {
-    margin: sizeValue($sizeKey, $sizeValue);
-  }
+// @function sizeValue($key, $value) {
+//   @return if($key =='none', 0, $value + $sizeUnit);
+// }
 
-  .#{$paddingKey}#{$separator}#{$sizeKey} {
-    padding: sizeValue($sizeKey, $sizeValue);
-  }
+// @each $size in $sizes {
+//   $sizeKey: nth($size, 1);
+//   $sizeValue: nth($size, 2);
 
-  @each $position in $positions {
-    $posKey: nth($position, 1);
-    $posValue: nth($position, 2);
+//   .#{$marginKey}#{$separator}#{$sizeKey} {
+//     margin: sizeValue($sizeKey, $sizeValue);
+//   }
 
-    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
-    }
+//   .#{$paddingKey}#{$separator}#{$sizeKey} {
+//     padding: sizeValue($sizeKey, $sizeValue);
+//   }
 
-    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+//   @each $position in $positions {
+//     $posKey: nth($position, 1);
+//     $posValue: nth($position, 2);
+
+//     .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+//       margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+//     }
+
+//     .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+//       padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+//     }
+//   }
+// }
+
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+      // $length:   map-get($lengths, x);
+      // $length:   map-get($lengths, y);
+
+      @include media-breakpoint-up($breakpoint) {
+        $min: breakpoint-min($breakpoint, $grid-breakpoints);
+
+        @if $min {
+          // everything else
+          @media (min-width: $min) {
+            .#{$abbrev}-#{$breakpoint}-#{$size} { #{$prop}:        $length $length !important; } // a = All sides
+            .#{$abbrev}t-#{$breakpoint}-#{$size} { #{$prop}-top:    $length !important; }
+            .#{$abbrev}r-#{$breakpoint}-#{$size} { #{$prop}-right:  $length !important; }
+            .#{$abbrev}b-#{$breakpoint}-#{$size} { #{$prop}-bottom: $length !important; }
+            .#{$abbrev}l-#{$breakpoint}-#{$size} { #{$prop}-left:   $length !important; }
+            .#{$abbrev}x-#{$breakpoint}-#{$size} {
+              #{$prop}-right:  $length !important;
+              #{$prop}-left:   $length !important;
+            }
+            .#{$abbrev}y-#{$breakpoint}-#{$size} {
+              #{$prop}-top:    $length !important;
+              #{$prop}-bottom: $length !important;
+            }
+          }
+        } @else {
+          // xs
+          .#{$abbrev}-#{$size} { #{$prop}:        $length $length !important; } // a = All sides
+          .#{$abbrev}t-#{$size} { #{$prop}-top:    $length !important; }
+          .#{$abbrev}r-#{$size} { #{$prop}-right:  $length !important; }
+          .#{$abbrev}b-#{$size} { #{$prop}-bottom: $length !important; }
+          .#{$abbrev}l-#{$size} { #{$prop}-left:   $length !important; }
+          .#{$abbrev}x-#{$size} {
+            #{$prop}-right:  $length !important;
+            #{$prop}-left:   $length !important;
+          }
+          .#{$abbrev}y-#{$size} {
+            #{$prop}-top:    $length !important;
+            #{$prop}-bottom: $length !important;
+          }
+        }
+
+      }
     }
   }
 }

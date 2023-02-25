@@ -1,10 +1,11 @@
 import React from 'react'
 import * as Yup from 'yup'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
 import { BiRename } from 'react-icons/bi'
 import { useForm } from 'react-hook-form'
+import { Link, redirect } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai'
 
 import { Button, Checkbox, Field } from '../../components'
@@ -36,7 +37,6 @@ const formSchema = Yup.object().shape({
 
 const SignUp: React.FC<Props> = () => {
   const [signUp] = useSignUpMutation()
-  const navigate = useNavigate()
 
   const methods = useForm<UserSignUpForm>({
     defaultValues: {
@@ -63,7 +63,7 @@ const SignUp: React.FC<Props> = () => {
           })
 
           if (result.data?.signUp) {
-            navigate("/auth/sign-in")
+            redirect("/auth/sign-in")
             resolve(result.data?.signUp)
           }
         } catch (error) {
@@ -79,7 +79,12 @@ const SignUp: React.FC<Props> = () => {
   };
 
   return (
-    <React.Fragment>
+    <motion.div
+      initial={{ transform: "translateX(-100%)" }}
+      animate={{ transform: "translateX(0)" }}
+      exit={{ transform: "translateX(100%)" }}
+      transition={{ delay: 0, duration: 0.25 }}
+    >
       <h3>Sign Up</h3>
 
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -126,17 +131,17 @@ const SignUp: React.FC<Props> = () => {
           }
         />
 
-        <Button type="submit" soft className='m-t-lg m-b-md'>Sign Up</Button>
+        <Button type="submit" soft className="mt-3 mb-3">Sign Up</Button>
       </form>
 
-      <NavLink to="/auth/sign-in" className="d--f jc--fe m-b-md">
+      <Link to="/auth/sign-in" className="d--f jc--fe mb-2">
         Already have an account?
-      </NavLink>
+      </Link>
 
-      <NavLink to="/auth/forgot" className="d--f jc--fe">
+      <Link to="/auth/forgot" className="d--f jc--fe">
         Forgot password?
-      </NavLink>
-    </React.Fragment>
+      </Link>
+    </motion.div>
   )
 }
 

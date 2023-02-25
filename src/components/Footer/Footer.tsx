@@ -1,14 +1,13 @@
-import { useForm } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
-
+import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './footer.module.scss'
+import { useForm } from 'react-hook-form'
+import { RxCountdownTimer } from 'react-icons/rx'
+import { FaFacebookF, FaInstagram, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa'
+
 import ImageCardPlaceholder from '../../assets/images/card-image-placeholder.png'
-import IconFacebook from '../../assets/icons/facebook.svg'
-import IconTwitter from '../../assets/icons/twitter.svg'
-import IconInstagram from '../../assets/icons/instagram.svg'
-import IconYouTube from '../../assets/icons/youtube.svg'
-import IconPinterest from '../../assets/icons/pinterest.svg'
-import IconClockWise from '../../assets/icons/clocwise.svg'
+
+import { CardIcon } from '../CardIcon'
 
 interface Props {
 }
@@ -52,40 +51,42 @@ const Footer: React.FC<Props> = () => {
                 and professional chauffeured carservice in major cities across World.
               </p>
 
-              <div className={`${styles.schedule} d--f`}>
-                <div className={`${styles.iconBox} d--f jc--c ai--c`}>
-                  <img src={IconClockWise} alt="ClockWise" />
-                </div>
-
-                <div className={styles.hoursAndPlace}>
-                  <span>Opening Houres</span>
-                  <span>Mon - Sat(8.00 - 6.00)</span>
-                  <span>Sunday - Closed</span>
-                </div>
+              <div className={`mt-3 d--f`}>
+                <CardIcon
+                  icon={<RxCountdownTimer />}
+                  horientation="horizontal"
+                  description={
+                    <React.Fragment>
+                      <span>Opening Houres</span>
+                      <span>Mon - Sat(8.00 - 6.00)</span>
+                      <span>Sunday - Closed</span>
+                    </React.Fragment>
+                  }
+                />
               </div>
             </div>
 
             <div className={`${styles.usefulLinks} col-2_sm-6`}>
               <span>Useful Links</span>
               <ul>
-                <li><NavLink to="/">About</NavLink></li>
-                <li><NavLink to="/">News</NavLink></li>
-                <li><NavLink to="/">Patners</NavLink></li>
-                <li><NavLink to="/">Team</NavLink></li>
-                <li><NavLink to="/">Menu</NavLink></li>
-                <li><NavLink to="/">Contact</NavLink></li>
+                <li><Link to="/">About</Link></li>
+                <li><Link to="/">News</Link></li>
+                <li><Link to="/">Patners</Link></li>
+                <li><Link to="/">Team</Link></li>
+                <li><Link to="/">Menu</Link></li>
+                <li><Link to="/">Contact</Link></li>
               </ul>
             </div>
 
             <div className={`${styles.help} col-2_sm-6`}>
               <span>Help?</span>
               <ul>
-                <li><NavLink to="/">FAQ</NavLink></li>
-                <li><NavLink to="/">Term & Condition</NavLink></li>
-                <li><NavLink to="/">Reporting</NavLink></li>
-                <li><NavLink to="/">Documentation</NavLink></li>
-                <li><NavLink to="/">Support Policy</NavLink></li>
-                <li><NavLink to="/">Privacy</NavLink></li>
+                <li><Link to="/">FAQ</Link></li>
+                <li><Link to="/">Term & Condition</Link></li>
+                <li><Link to="/">Reporting</Link></li>
+                <li><Link to="/">Documentation</Link></li>
+                <li><Link to="/">Support Policy</Link></li>
+                <li><Link to="/">Privacy</Link></li>
               </ul>
             </div>
 
@@ -94,29 +95,29 @@ const Footer: React.FC<Props> = () => {
 
               <div>
                 <div className={styles.card}>
-                  <img src={ImageCardPlaceholder} alt="placeholder" />
+                  <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>Is fastfood good for your body?</span>
-                    <p>February 28,2022</p>
+                    <span>20 Feb 2022</span>
+                    <p>Keep Your Business</p>
                   </div>
                 </div>
 
                 <div className={styles.card}>
-                  <img src={ImageCardPlaceholder} alt="placeholder" />
+                  <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>Change your food habit With organic food</span>
-                    <p>February 28,2022</p>
+                    <span>20 Feb 2022</span>
+                    <p>Keep Your Business</p>
                   </div>
                 </div>
 
                 <div className={styles.card}>
-                  <img src={ImageCardPlaceholder} alt="placeholder" />
+                  <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>Do you like fastfood for your life?</span>
-                    <p>February 28,2022</p>
+                    <span>20 Feb 2022</span>
+                    <p>Keep Your Business</p>
                   </div>
                 </div>
               </div>
@@ -131,23 +132,28 @@ const Footer: React.FC<Props> = () => {
 
           <div className="social d--f ai--c">
             <a href="/" className={`${styles.iconButton} ${styles.facebook}`}>
-              <img src={IconFacebook} alt="Facebook" />
+              <FaFacebookF />
+              {/* <img src={IconFacebook} alt="Facebook" /> */}
             </a>
 
             <a href="/" className={`${styles.iconButton} ${styles.twitter}`}>
-              <img src={IconTwitter} alt="Twitter" />
+              <FaTwitter />
+              {/* <img src={IconTwitter} alt="Twitter" /> */}
             </a>
 
             <a href="/" className={`${styles.iconButton} ${styles.instagram}`}>
-              <img src={IconInstagram} alt="Instagram" />
+              <FaInstagram />
+              {/* <img src={IconInstagram} alt="Instagram" /> */}
             </a>
 
             <a href="/" className={`${styles.iconButton} ${styles.youtube}`}>
-              <img src={IconYouTube} alt="YouTube" />
+              <FaYoutube />
+              {/* <img src={IconYouTube} alt="YouTube" /> */}
             </a>
 
             <a href="/" className={`${styles.iconButton} ${styles.pinterest}`}>
-              <img src={IconPinterest} alt="Pinterest" />
+              <FaPinterest />
+              {/* <img src={IconPinterest} alt="Pinterest" /> */}
             </a>
           </div>
         </div>

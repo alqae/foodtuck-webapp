@@ -9,10 +9,6 @@
   font-display: fallback;
 }
 
-.App-header p {
-  font-family: $font-family-sans-serif;
-}
-
 @font-face {
   font-family: $font-family-sans-serif;
   src: url("../../public/fonts/Helvetica/Helvetica-Itallic.woff2") format("woff2"),
@@ -40,8 +36,19 @@
 
 @font-face {
   font-family: $font-family-inter;
+  // src: url("../../public/fonts/Helvetica/Helvetica-Regular.woff2") format("woff2"),
+  //   url("../../public/fonts/Helvetica/Helvetica-Regular.woff") format("woff");
+  // font-weight: normal;
   src: url("../../public/fonts/Inter/Inter-Regular.woff2") format("woff2"),
     url("../../public/fonts/Inter/Inter-Regular.woff") format("woff");
+  font-weight: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: $font-family-great-vibes;
+  src: url("../../public/fonts/GreatVibes/GreatVibes-Regular.woff2") format("woff2"),
+    url("../../public/fonts/GreatVibes/GreatVibes-Regular.woff") format("woff");
   font-weight: normal;
   font-display: fallback;
 }

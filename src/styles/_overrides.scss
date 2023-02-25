@@ -2,3 +2,12 @@
   @include font(body, normal, $color-black);
   border-radius: 0;
 }
+
+.swiper-pagination-bullet {
+  background: map-get($theme-colors, primary) !important;
+  opacity: 0.3 !important;
+
+  &.swiper-pagination-bullet-active {
+    opacity: 1 !important;
+  }
+}

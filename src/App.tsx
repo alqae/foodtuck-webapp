@@ -1,17 +1,31 @@
 import React from 'react'
-import {
-  RouterProvider,
-  createRoutesFromElements,
-  createBrowserRouter
-} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 // import { ScrollRestoration } from 'react-router-dom'
+// import { AnimatePresence } from 'framer-motion'
 import { Route } from 'use-react-router-breadcrumbs'
+import { RouterProvider, createRoutesFromElements, createBrowserRouter } from 'react-router-dom'
 
 import { Fallback, FormLayout, Layout, NoMatch } from './components'
-import { Home, SignUp, SignIn, ForgotPassword } from './pages'
+import {
+  Home,
+  Menu,
+  Blog,
+  Pages,
+  About,
+  Shop,
+  Contact,
+  SignUp,
+  SignIn,
+  ForgotPassword
+} from './pages'
 
+// Import global styles
 import './styles/global.scss'
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,13 +40,13 @@ const router = createBrowserRouter(
 
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} breadcrumb="Home" />
-        {/* <Route path="about" element={<About />} /> */}
-        {/* <Route path="dashboard" element={<Dashboard />} /> */}
-
-        {/* Using path="*"" means "match anything", so this route
-              acts like a catch-all for URLs that we don't have explicit
-              routes for. */}
-        <Route path="*" element={<NoMatch />} breadcrumb={"404 Error"} />
+        <Route path="menu" element={<Menu />} breadcrumb="Menu" />
+        <Route path="blog" element={<Blog />} breadcrumb="Blog" />
+        <Route path="pages" element={<Pages />} breadcrumb="Pages" />
+        <Route path="about" element={<About />} breadcrumb="About" />
+        <Route path="shop" element={<Shop />} breadcrumb="Shop" />
+        <Route path="contact" element={<Contact />} breadcrumb="Contact" />
+        <Route path="*" element={<NoMatch />} breadcrumb="404 Error" />
       </Route>
     </Route>
   )
@@ -42,7 +56,9 @@ const App = () => {
   return (
     <React.Fragment>
       <Toaster containerClassName="toast" />
-      <RouterProvider router={router} fallbackElement={<Fallback />} />
+      {/* <AnimatePresence> */}
+        <RouterProvider router={router} fallbackElement={<Fallback />} />
+      {/* </AnimatePresence> */}
     </React.Fragment>
   )
 }

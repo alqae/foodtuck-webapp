@@ -38,12 +38,13 @@ const Navbar: React.FC<Props> = () => {
         </Link>
 
         <div className={styles.menu}>
-          <NavLink
+          <Link
             to="/"
-            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
+            className={styles.link}
+            // className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Home
-          </NavLink>
+          </Link>
           <NavLink
             to="/menu"
             className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
@@ -83,15 +84,15 @@ const Navbar: React.FC<Props> = () => {
         </div>
 
         <div className={styles.actions}>
-          <NavLink className={styles.link} to="search">
+          <Link className={styles.link} to="search">
             <AiOutlineSearch size="24px" />
-          </NavLink>
-          <NavLink className={styles.link} to="profile">
+          </Link>
+          <Link className={styles.link} to="profile">
             <AiOutlineUser size="24px" />
-          </NavLink>
-          <NavLink className={styles.link} to="car">
+          </Link>
+          <Link className={styles.link} to="car">
             <AiOutlineShopping size="24px" />
-          </NavLink>
+          </Link>
           {
             isAuth ? (
               <div className={styles.link} onClick={logOut}>

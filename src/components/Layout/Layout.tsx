@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './layout.module.scss'
+import { AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, useMatch, useNavigate } from 'react-router-dom'
 
@@ -15,8 +16,8 @@ interface Props {
 
 const Layout: React.FC<Props> = () => {
   const dispatch = useDispatch()
-  const isIndexPage = useMatch('/')
   const navigate = useNavigate()
+  const isIndexPage = useMatch('/')
   const token = useSelector<RootState>((state) => state.auth.token)
 
   React.useEffect(() => {
@@ -40,8 +41,10 @@ const Layout: React.FC<Props> = () => {
         {!isIndexPage && <Breadcrumb />}
       </header>
 
-      <div className="container">
-        <Outlet />
+      <div className={isIndexPage ? ' ' : 'container'}>
+        <AnimatePresence>
+          <Outlet />
+        </AnimatePresence>
       </div>
 
       <Footer />

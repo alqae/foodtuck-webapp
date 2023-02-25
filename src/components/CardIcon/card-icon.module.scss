@@ -1,0 +1,42 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.cardIcon {
+  width: 100%;
+
+  .icon {
+    background-color: map-get($theme-colors, primary);
+    border-radius: 3px;
+    height: 72px;
+    width: 78px;
+    margin-right: 18px;
+
+    img, svg {
+      fill: $color-white;
+      width: 40px;
+      height: 40px;
+    }
+
+    &.rounded {
+      border-radius: 50%;
+    }
+  }
+
+  .description {
+    max-width: 100%;
+
+    span {
+      display: block;
+
+      &:not(:first-child) {
+        @include font(body, small, $color-white);
+      }
+    }
+  }
+
+  &.vertical {
+    max-width: 78px;
+  }
+}

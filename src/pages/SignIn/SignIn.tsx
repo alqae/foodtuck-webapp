@@ -1,11 +1,12 @@
 import React from 'react'
 import * as Yup from 'yup'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
-import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, redirect, useSearchParams } from 'react-router-dom'
 
 import { useActivateUserMutation, useSignInMutation } from '../../generated/graphql'
 import { Button, Checkbox, Field } from '../../components'
@@ -16,7 +17,7 @@ interface Props { }
 interface UserSignUpForm {
   email: string
   password: string
-  // rememberMe: boolean
+  rememberMe: boolean
 }
 
 const formSchema = Yup.object().shape({
@@ -27,10 +28,11 @@ const formSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Password length should be at least 8 characters")
     .max(12, "Password cannot exceed more than 12 characters"),
+  rememberMe: Yup.boolean()
+    .optional()
 })
 
 const SignIn: React.FC<Props> = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [signIn] = useSignInMutation()
   const [activateUser] = useActivateUserMutation()
@@ -39,7 +41,7 @@ const SignIn: React.FC<Props> = () => {
     defaultValues: {
       email: "",
       password: "",
-      // rememberMe: false
+      rememberMe: false
     },
     resolver: yupResolver(formSchema)
   });
@@ -57,7 +59,7 @@ const SignIn: React.FC<Props> = () => {
                 type: AuthActions.setToken,
                 payload: result.data?.activeUser.token
               })
-              navigate("/")
+              redirect("/")
               resolve(result)
             }
           } catch (error) {
@@ -71,7 +73,7 @@ const SignIn: React.FC<Props> = () => {
         }
       )
     }
-  }, [activateUser, dispatch, navigate, searchParams])
+  }, [activateUser, dispatch, redirect, searchParams])
 
   const onSubmit = async (data: UserSignUpForm) => {
     await toast.promise(
@@ -89,7 +91,7 @@ const SignIn: React.FC<Props> = () => {
               type: AuthActions.setToken,
               payload: result.data?.signIn.token
             })
-            navigate("/")
+            redirect("/")
             resolve(result)
           }
         } catch (error) {
@@ -105,7 +107,12 @@ const SignIn: React.FC<Props> = () => {
   }
 
   return (
-    <React.Fragment>
+    <motion.div
+      initial={{ transform: "translateX(100%)" }}
+      animate={{ transform: "translateX(0)" }}
+      exit={{ transform: "translateX(-100%)" }}
+      transition={{ delay: 0, duration: 0.25 }}
+    >
       <h3>Sign In</h3>
 
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -132,17 +139,17 @@ const SignIn: React.FC<Props> = () => {
           label="Remember me?"
         />
 
-        <Button type="submit" soft className='m-t-md m-b-md'>Sign In</Button>
+        <Button type="submit" soft className="mt-3 mb-3">Sign In</Button>
       </form>
 
-      <NavLink to="/auth/sign-up" className="d--f jc--fe m-b-md">
+      <Link to="/auth/sign-up" className="d--f jc--fe mb-2">
         Create a new acccount
-      </NavLink>
+      </Link>
 
-      <NavLink to="/auth/forgot" className="d--f jc--fe">
+      <Link to="/auth/forgot" className="d--f jc--fe">
         Forgot password?
-      </NavLink>
-    </React.Fragment>
+      </Link>
+    </motion.div>
   );
 }
 

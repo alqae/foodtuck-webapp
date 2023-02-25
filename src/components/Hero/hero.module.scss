@@ -1,0 +1,133 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.hero {
+  background-image: url(../../assets/images/hero-background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  max-width: 100%;
+  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    height: calc(677px - 90px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(13, 13, 13, 0.95);
+  }
+
+  > div {
+    position: relative;
+    z-index: 2;
+  }
+
+  .imageContainer {
+    @include media-breakpoint-down(lg) {
+      position: absolute;
+      right: -30%;
+      top: 50%;
+    }
+
+    @include media-breakpoint-up(md) {
+      right: -0%;
+      top: 65%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+
+      @include media-breakpoint-down(md) {
+        transform: scale(2);
+      }
+    }
+  }
+
+  .half {
+    display: flex;
+
+    .social {
+      margin-right: 32px;
+      text-align: center;
+
+      * {
+        display: block;
+      }
+
+      &::after,
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 1px;
+        height: 150px;
+        background-color: $color-white;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: $color-white;
+        margin-bottom: 25px;
+
+        &:nth-child(2) {
+          fill: map-get($theme-colors, primary);
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      &::after {
+        margin-top: 25px;
+      }
+
+      &::before {
+        margin-bottom: 25px;
+      }
+    }
+
+    .summary {
+      @include media-breakpoint-up(lg) {
+        padding-top: 100px;
+      }
+
+      span {
+        @include font(eyebrow, normal, map-get($theme-colors, primary));
+      }
+
+      h1 {
+        @include font(headings, xxl, $color-white);
+      }
+
+      p {
+        @include font(body, normal, $color-white);
+        max-width: 50%;
+
+        @include media-breakpoint-up(md) {
+          max-width: 75%;
+        }
+      }
+    }
+  }
+}

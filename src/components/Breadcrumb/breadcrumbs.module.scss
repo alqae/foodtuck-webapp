@@ -8,6 +8,12 @@
   padding-bottom: 108px;
   padding-top: 108px;
 
+  @include media-breakpoint-down(md) {
+    background-size: cover;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+
   > span {
     display: block;
     @include font(headings, xl, $color-white);

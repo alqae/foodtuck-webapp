@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 import { onError } from '@apollo/client/link/error'
 import {
   ApolloClient,
@@ -18,8 +20,6 @@ import reportWebVitals from './reportWebVitals'
 import { AuthActions } from './store/reducers'
 import { store } from './store'
 import App from './App'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
 
 const cache = new InMemoryCache();
 
@@ -70,7 +70,7 @@ const client = new ApolloClient({
     }),
     requestLink,
     new HttpLink({
-      uri: process.env.REACT_APP_GRAPHQL_URL || 'http://localhost:4000/graphql',
+      uri: process.env.GRAPHQL_URL || 'http://localhost:4000/graphql',
       credentials: 'include'
     })
   ]),

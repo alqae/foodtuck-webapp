@@ -17,9 +17,14 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $color-white;
+    background-color: transparent;
     color: map-get($theme-colors, primary);
   }
+}
+
+.transparent {
+  background-color: transparent;
+  color: $color-white;
 }
 
 .large {
@@ -35,6 +40,10 @@
 
 .rounded {
   border-radius: 6px;
+}
+
+.circular {
+  border-radius: 30px;
 }
 
 .fullWidth {

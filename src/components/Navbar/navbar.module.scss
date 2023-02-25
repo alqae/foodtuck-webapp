@@ -8,7 +8,7 @@
   padding-top: 29px;
   padding-bottom: 29px;
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     padding-top: 16px;
     padding-bottom: 16px;
     max-height: 74px;

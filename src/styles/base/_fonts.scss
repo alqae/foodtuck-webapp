@@ -2,13 +2,14 @@
 // should be in the styles/_typography.scss partial.
 @use "sass:map";
 @use "sass:math";
-@use "./helpers";
-@use "./colors";
-@use "./variables";
+@import "./helpers";
+@import "./colors";
+@import "./variables";
 
 // Fonts
 $font-family-sans-serif: "Helvatica", sans-serif;
-$font-family-inter: "Inter", monospace;
+$font-family-inter: "Inter";
+$font-family-great-vibes: "Great vibes";
 $font-size-base: 1.25rem; // 20px
 $line-height-base: 1.8; // 36px
 
@@ -16,7 +17,7 @@ $fonts: (
   headings: (
     xxl: (
       "family": $font-family-sans-serif,
-      "font-size-mobile": 60px,
+      "font-size-mobile": 48px,
       "font-size-desktop": 60px,
       "font-weight": 700,
       "letter-spacing": normal,
@@ -116,6 +117,17 @@ $fonts: (
       "text-transform": false,
     ),
   ),
+  eyebrow: (
+    normal: (
+      "family": $font-family-great-vibes,
+      "font-size-mobile": 24px,
+      "font-size-desktop": 32px,
+      "font-weight": 400,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.25,
+      "line-height-desktop": 1.25,
+    ),
+  ),
   navbar: (
     desktop: (
       "family": $font-family-inter,
@@ -153,25 +165,26 @@ $fonts: (
   $max-font-size: map.get($values, "font-size-desktop");
   $min-line-height: map.get($values, "line-height-mobile");
   $max-line-height: map.get($values, "line-height-desktop");
-  // $min-vw: map.get($grid-breakpoints, "md");
-  // $max-vw: map.get($grid-breakpoints, "xxl");
+  $min-vw: map.get($grid-breakpoints, md);
+  $max-vw: map.get($grid-breakpoints, xxl);
 
   color: $color;
   font-family: map.get($values, "family");
   font-weight: map.get($values, "font-weight");
   font-size: $min-font-size;
   line-height: $min-line-height;
-  // @include media-breakpoint-up(md) {
-  //   font-size: calc(
-  //     #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
-  //       ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
-  //   );
-  // }
 
-  // @include media-breakpoint-up(xxl) {
-  //   font-size: $max-font-size;
-  //   line-height: $max-line-height;
-  // }
+  @include media-breakpoint-up(md) {
+    font-size: calc(
+      #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+        ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+    );
+  }
+
+  @include media-breakpoint-up(xxl) {
+    font-size: $max-font-size;
+    line-height: $max-line-height;
+  }
 
   letter-spacing: map.get($values, "letter-spacing");
 
