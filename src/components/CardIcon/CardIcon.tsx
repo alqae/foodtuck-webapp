@@ -1,35 +1,56 @@
 import React from 'react'
+import classNames from 'classnames'
+import { IconType } from 'react-icons'
+import { Paragraph } from '../Paragraph'
 import styles from './card-icon.module.scss'
 
 interface Props {
-  icon: React.ReactNode | string
-  description: React.ReactNode
+  icon: IconType | string
+  description: React.ReactNode | string
   rounded?: boolean
   containerClassName?: string
-  descriptionClassName?: string
+  textColor?: 'black' | 'white'
   horientation?: 'vertical' | 'horizontal'
 }
 
 const CardIcon: React.FC<Props> = ({
-  icon,
+  icon: Icon,
   description,
   horientation,
   containerClassName,
-  descriptionClassName,
+  textColor,
   rounded
 }) => {
   return (
-    <div className={`${styles.cardIcon} d--f ${horientation === 'vertical' ? `${styles.vertical} fd--c` : 'fd--r'} ${containerClassName ?? ''}`}>
-      <div className={`${styles.icon} d--f jc--c ai--c ${rounded && styles.rounded}`}>
-        {typeof icon == 'string' ? <img src={icon} alt="icon" /> : icon}
+    <div className={
+      classNames(
+        styles.cardIcon,
+        'd--f',
+        {
+          [`${styles.vertical} fd--c`]: horientation === 'vertical',
+          [`${styles.horizontal} fd--r`]: horientation === 'horizontal',
+          [`${containerClassName ?? ''}`]: containerClassName,
+        }
+      )}>
+      <div className={classNames(styles.icon, 'd--f', 'jc--c', 'ai--c', { [styles.rounded]: rounded })}>
+        <Icon />
       </div>
-      <div className={`${styles.description} ${descriptionClassName ?? ''}`}>{description}</div>
+      <Paragraph
+        className={classNames({
+          'mt-1 text-center': horientation === 'vertical',
+          'ml-2': horientation === 'horizontal',
+        })}
+        color={textColor}
+      >
+        {description}
+      </Paragraph>
     </div>
   )
 }
 
 CardIcon.defaultProps = {
   horientation: 'vertical',
+  textColor: 'white',
 }
 
 export default CardIcon

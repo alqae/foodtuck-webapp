@@ -1,0 +1,25 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.layout {
+
+  section {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 120px;
+
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 60px;
+    }
+
+    &:first-child {
+      padding-top: 120px;
+
+      @include media-breakpoint-down(sm) {
+        padding-top: 60px;
+      }
+    }
+  }
+}

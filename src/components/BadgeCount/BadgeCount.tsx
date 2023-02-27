@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './badge-count.module.scss'
 
 interface Props {
@@ -8,8 +9,8 @@ interface Props {
 
 const BadgeCount: React.FC<Props> = ({ count, message }) => {
   return (
-    <div className={`${styles.badgeCount} d--f`}>
-      <span className={`${styles.number} mr-6`}>{count}+</span>
+    <div className={classNames(styles.badgeCount,  'd--f')}>
+      <span className={classNames(styles.number, 'mr-6')}>{count}+</span>
       <div className={styles.text}>
         {typeof message === 'string' ? <p>{message}</p> : message}
       </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
 import { Control, Controller, RegisterOptions } from 'react-hook-form'
 
@@ -34,27 +35,42 @@ const Field: React.FC<Props> = ({
           name={name}
           control={control}
           rules={{ onBlur: () => setIsFocused(false), ...rules }}
-          render={({ field: { name, onBlur, onChange, ref, value }, fieldState: { error } }) => {
-            const focusedClass = (isFocused || !!value.length) ? styles.floating : ''
-            const errorClass = error ? styles.error : ''
-            return (
-              <div className={`${styles.field} d--flex ai--c ${focusedClass} ${errorClass}`}>
-                {suffixIcon && <div className={`${styles.suffixIcon} d--f jc--c ai--c`}>{suffixIcon}</div>}
-                <label htmlFor={name}>{label}</label>
-                <input
-                  onFocus={() => setIsFocused(true)}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  type={type}
-                  id={name}
-                  name={name}
-                  ref={ref}
-                  placeholder={placeholder}
-                />
-                {error && <AiOutlineExclamationCircle size="24px" />}
-              </div>
-            )
-          }}
+          render={({ field: { name, onBlur, onChange, ref, value }, fieldState: { error } }) => (
+            <div
+              className={classNames(
+                styles.field,
+                'd--flex',
+                'ai--c',
+                {
+                  [styles.floating]: isFocused || !!value.length,
+                },
+                {
+                  [styles.error]: error,
+                }
+              )}>
+
+              {suffixIcon && (
+                <div className={classNames(styles.suffixIcon, 'd--f', 'jc--c', 'ai--c')}>
+                  {suffixIcon}
+                </div>
+              )}
+
+              <label htmlFor={name}>{label}</label>
+              <input
+                onFocus={() => setIsFocused(true)}
+                onChange={onChange}
+                onBlur={onBlur}
+                type={type}
+                id={name}
+                name={name}
+                ref={ref}
+                placeholder={placeholder}
+              />
+
+              {error && <AiOutlineExclamationCircle size="24px" />}
+            </div>
+          )
+          }
         />
       );
   }

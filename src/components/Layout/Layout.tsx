@@ -35,20 +35,20 @@ const Layout: React.FC<Props> = () => {
   }, [token, dispatch, navigate])
 
   return (
-    <main className={styles.layout}>
+    <>
       <header>
         <Navbar />
         {!isIndexPage && <Breadcrumb />}
       </header>
 
-      <div className={isIndexPage ? ' ' : 'container'}>
+      <main className={styles.layout}>
         <AnimatePresence>
           <Outlet />
         </AnimatePresence>
-      </div>
+      </main>
 
       <Footer />
-    </main>
+    </>
   )
 }
 

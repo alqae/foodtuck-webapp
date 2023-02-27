@@ -16,28 +16,6 @@
 
     @include media-breakpoint-down(sm) {
       flex-direction: column;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    @include media-breakpoint-up(lg) {
-      margin-left: 81px;
-      margin-right: 81px;
-    }
-
-    .supportHalf {
-      h4 {
-        @include font(headings, md, $color-white);
-        margin-bottom: 16px;
-
-        b {
-          color: map-get($theme-colors, primary);
-        }
-      }
-
-      p {
-        @include font(body, normal, $color-white);
-      }
     }
 
     .suscribeField {
@@ -49,7 +27,6 @@
 
       @include media-breakpoint-down(md) {
         width: 100%;
-        margin-top: 32px;
       }
 
       input[type="email"] {
@@ -70,7 +47,7 @@
       button {
         width: 163px;
         cursor: pointer;
-        @include font(body, normal, $color-white);
+        @include font(body, md, $color-white);
         margin-left: -4px;
         border-radius: 4px;
         padding: 16px 24px;
@@ -84,37 +61,14 @@
 
   .about {
     color: $color-white;
-    padding-top: 56px;
-    padding-bottom: 56px;
-
-    span, p, a {
-      text-decoration: none;
-      @include font(body, normal, $color-white);
-    }
 
     .aboutInfo {
       margin-right: auto;
-
-      > span {
-        @include font(headings, xs, $color-white);
-        display: inline-block;
-        margin-bottom: 32px;
-      }
-
-      p {
-        @include font(body, medium, $color-white);
-      }
     }
 
     .usefulLinks,
     .help,
     .recentPost {
-      > span {
-        @include font(headings, xs, $color-white);
-        display: inline-block;
-        margin-bottom: 24px;
-      }
-
       li {
         margin-bottom: 16px;
 
@@ -133,17 +87,8 @@
         width: 274px;
 
         img {
-          width: 55.07px;
-          height: 47.02px;
-        }
-
-        span {
-          @include font(body, normal, $color-white);
-          opacity: 0.49;
-        }
-
-        p {
-          @include font(body, medium, $color-white);
+          width: 55px;
+          height: 48px;
         }
 
         &:last-child {
@@ -164,10 +109,6 @@
   padding-top: 32px;
   padding-bottom: 34px;
   background-color: map-get($grays, gray-400);
-
-  span {
-    @include font(body, normal, $color-white);
-  }
 
   .iconButton {
     background-color: $color-white;

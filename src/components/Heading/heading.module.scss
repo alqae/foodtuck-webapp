@@ -1,0 +1,44 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.xs {
+  @include font(headings, xs, $color-white);
+}
+
+.sm {
+  @include font(headings, sm, $color-white);
+}
+
+.md {
+  @include font(headings, md, $color-white);
+}
+
+.lg {
+  @include font(headings, lg, $color-white);
+}
+
+.xl {
+  @include font(headings, xl, $color-white);
+}
+
+.xxl {
+  @include font(headings, xxl, $color-white);
+}
+
+.white {
+  color: $color-white;
+}
+
+.black {
+  color: $color-black;
+}
+
+.primary {
+  color: map-get($theme-colors, primary);
+}
+
+.secondary {
+  color: map-get($theme-colors, secondary);
+}

@@ -22,7 +22,7 @@
     box-shadow: none;
     outline: none;
     width: 100%;
-    @include font(body, normal, map-get($grays, gray-400));
+    @include font(body, md, map-get($grays, gray-400));
     transition-property: margin-top;
     transition-timing-function: linear;
     transition-duration: 200ms;
@@ -33,7 +33,7 @@
   }
 
   label {
-    @include font(body, normal, map-get($grays, gray-400));
+    @include font(body, md, map-get($grays, gray-400));
     transition-property: transform;
     transition-timing-function: linear;
     transition-duration: 200ms;
@@ -86,7 +86,7 @@
       position: absolute;
       bottom: -22px;
       visibility: visible;
-      @include font(body, small, map-get($theme-colors, error));
+      @include font(body, sm, map-get($theme-colors, error));
     }
   }
 }

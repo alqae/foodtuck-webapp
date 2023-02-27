@@ -22,7 +22,7 @@
   }
 
   .text, span, p, em {
-    @include font(body, large, map-get($grays, gray-100));
+    @include font(body, xl, map-get($grays, gray-100));
 
     b {
       font-size: 24px;

@@ -1,0 +1,61 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.paragraph {
+  @include font(body, md);
+
+  &, * {
+    text-decoration: none
+  }
+}
+
+.size-xl {
+  @include font(body, xl);
+}
+
+.size-lg {
+  @include font(body, lg);
+}
+
+.size-md {
+  @include font(body, md);
+}
+
+.size-sm {
+  @include font(body, sm);
+}
+
+.color {
+  &-primary {
+    &, * {
+      color: map-get($theme-colors, primary);
+    }
+  }
+
+  &-secondary {
+    &, * {
+      color: map-get($theme-colors, secondary);
+    }
+  }
+
+  &-black {
+    &, * {
+      color: $color-black;
+    }
+  }
+
+  &-white {
+    &, * {
+      color: $color-white;
+    }
+  }
+
+  &-gray {
+    &, * {
+      color: map-get($grays, gray-600);
+    }
+  }
+}
+

@@ -29,7 +29,7 @@
     }
 
     p {
-      @include font(body, medium, map-get($grays, gray-400));
+      @include font(body, lg, map-get($grays, gray-400));
       margin-bottom: 32px;
       margin-right: auto;
       margin-left: auto;

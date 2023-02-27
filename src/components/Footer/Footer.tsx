@@ -1,20 +1,33 @@
 import React from 'react'
+import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import styles from './footer.module.scss'
 import { useForm } from 'react-hook-form'
 import { RxCountdownTimer } from 'react-icons/rx'
-import { FaFacebookF, FaInstagram, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa'
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaPinterest,
+  FaTwitter,
+  FaYoutube,
+} from 'react-icons/fa'
 
 import ImageCardPlaceholder from '../../assets/images/card-image-placeholder.png'
 
+import { Paragraph } from '../Paragraph'
 import { CardIcon } from '../CardIcon'
+import { Heading } from '../Heading'
 
-interface Props {
+interface Props {}
+
+interface SubscriteForm {
+  emailToSubscribe: string
 }
 
 const Footer: React.FC<Props> = () => {
-  const { register, handleSubmit } = useForm<{ emailToSubscribe: string }>();
-  const onSubmit = (data: { emailToSubscribe: string }) => {
+  const { register, handleSubmit } = useForm<SubscriteForm>();
+
+  const onSubmit = (data: SubscriteForm) => {
     console.log(data)
     // TODO: Integrate with BE
   };
@@ -25,13 +38,15 @@ const Footer: React.FC<Props> = () => {
     <footer>
       <div className={styles.supportAndAbout}>
         <div className="container">
-          <div className={`${styles.support} d--f jc--sb ai--fs`}>
-            <div className={styles.supportHalf}>
-              <h4><b>St</b>ill You Need Our Support ?</h4>
-              <p>Don't wait make a smart & logical quote here. Its pretty easy.</p>
+          <div className={classNames(styles.support, 'mr-md-10', 'ml-md-10', 'd--f', 'jc--sb', 'ai--fs')}>
+            <div>
+              <Heading level={4} color="white" className="mb-2">
+                <b className="highlight">St</b>ill You Need Our Support ?
+              </Heading>
+              <Paragraph color="white">Don't wait make a smart & logical quote here. Its pretty easy.</Paragraph>
             </div>
 
-            <form className={styles.suscribeField} onSubmit={handleSubmit(onSubmit)}>
+            <form className={classNames(styles.suscribeField, 'mt-4', 'mt-md-0')} onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="email"
                 id="emailToSubscribe"
@@ -42,64 +57,62 @@ const Footer: React.FC<Props> = () => {
             </form>
           </div>
 
-          <div className={`${styles.about} grid`}>
-            <div className={`${styles.aboutInfo} col-4_sm-6`}>
-              <span>About Us.</span>
+          <div className={classNames(styles.about, 'pt-7', 'pb-7', 'grid')}>
+            <div className={classNames(styles.aboutInfo, 'col-4_sm-6')}>
+              <Heading className="mb-4" color="white" size="xs">About Us.</Heading>
 
-              <p>
+              <Paragraph className="mb-3" color="white">
                 orporate clients and leisure travelers hasbeen relying on Groundlink for dependablesafe,
                 and professional chauffeured carservice in major cities across World.
-              </p>
+              </Paragraph>
 
-              <div className={`mt-3 d--f`}>
-                <CardIcon
-                  icon={<RxCountdownTimer />}
-                  horientation="horizontal"
-                  description={
-                    <React.Fragment>
-                      <span>Opening Houres</span>
-                      <span>Mon - Sat(8.00 - 6.00)</span>
-                      <span>Sunday - Closed</span>
-                    </React.Fragment>
-                  }
-                />
-              </div>
+              <CardIcon
+                icon={RxCountdownTimer}
+                horientation="horizontal"
+                description={
+                  <React.Fragment>
+                    <Paragraph color="white">Opening Houres</Paragraph>
+                    <Paragraph color="white" size="sm">Mon - Sat (8:00 AM - 6:00 PM)</Paragraph>
+                    <Paragraph color="white" size="sm">Sunday - Closed</Paragraph>
+                  </React.Fragment>
+                }
+              />
             </div>
 
-            <div className={`${styles.usefulLinks} col-2_sm-6`}>
-              <span>Useful Links</span>
+            <div className={classNames(styles.usefulLinks, 'col-2_sm-6')}>
+              <Heading className="mb-4" color="white" size="xs">Useful Links</Heading>
               <ul>
-                <li><Link to="/">About</Link></li>
-                <li><Link to="/">News</Link></li>
-                <li><Link to="/">Patners</Link></li>
-                <li><Link to="/">Team</Link></li>
-                <li><Link to="/">Menu</Link></li>
-                <li><Link to="/">Contact</Link></li>
+                <Paragraph as="li" color="white"><Link to="/">About</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">News</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Patners</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Team</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Menu</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Contact</Link></Paragraph>
               </ul>
             </div>
 
-            <div className={`${styles.help} col-2_sm-6`}>
-              <span>Help?</span>
+            <div className={classNames(styles.help, 'col-2_sm-6')}>
+              <Heading className="mb-4" color="white" size="xs">Help?</Heading>
               <ul>
-                <li><Link to="/">FAQ</Link></li>
-                <li><Link to="/">Term & Condition</Link></li>
-                <li><Link to="/">Reporting</Link></li>
-                <li><Link to="/">Documentation</Link></li>
-                <li><Link to="/">Support Policy</Link></li>
-                <li><Link to="/">Privacy</Link></li>
+                <Paragraph as="li" color="white"><Link to="/">FAQ</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Term & Condition</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Reporting</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Documentation</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Support Policy</Link></Paragraph>
+                <Paragraph as="li" color="white"><Link to="/">Privacy</Link></Paragraph>
               </ul>
             </div>
 
-            <div className={`${styles.recentPost} xs-hidden col-3`}>
-              <span>Recent Post</span>
+            <div className={classNames(styles.recentPost, 'xs-hidden', 'col-3')}>
+              <Heading className="mb-4" color="white" size="xs">Recent Post</Heading>
 
               <div>
                 <div className={styles.card}>
                   <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>20 Feb 2022</span>
-                    <p>Keep Your Business</p>
+                    <Paragraph color="gray" size="sm">20 Feb 2022</Paragraph>
+                    <Paragraph color="white">Keep Your Business</Paragraph>
                   </div>
                 </div>
 
@@ -107,8 +120,8 @@ const Footer: React.FC<Props> = () => {
                   <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>20 Feb 2022</span>
-                    <p>Keep Your Business</p>
+                    <Paragraph color="gray" size="sm">20 Feb 2022</Paragraph>
+                    <Paragraph color="white">Keep Your Business</Paragraph>
                   </div>
                 </div>
 
@@ -116,8 +129,8 @@ const Footer: React.FC<Props> = () => {
                   <img src={ImageCardPlaceholder} className="mr-2" alt="placeholder" />
 
                   <div>
-                    <span>20 Feb 2022</span>
-                    <p>Keep Your Business</p>
+                    <Paragraph color="gray" size="sm">20 Feb 2022</Paragraph>
+                    <Paragraph color="white">Keep Your Business</Paragraph>
                   </div>
                 </div>
               </div>
@@ -128,33 +141,28 @@ const Footer: React.FC<Props> = () => {
 
       <div className={styles.copyRightAndSocial}>
         <div className="container d--f jc--sb ai--c">
-          <span>{`Copyright © ${year} by Ayeman. All Rights Reserved.`}</span>
+          <Paragraph color="white">{`Copyright © ${year} by Ayeman. All Rights Reserved.`}</Paragraph>
 
           <div className="social d--f ai--c">
-            <a href="/" className={`${styles.iconButton} ${styles.facebook}`}>
+            <Link to="/" className={classNames(styles.iconButton, styles.facebook)}>
               <FaFacebookF />
-              {/* <img src={IconFacebook} alt="Facebook" /> */}
-            </a>
+            </Link>
 
-            <a href="/" className={`${styles.iconButton} ${styles.twitter}`}>
+            <Link to="/" className={classNames(styles.iconButton, styles.twitter)}>
               <FaTwitter />
-              {/* <img src={IconTwitter} alt="Twitter" /> */}
-            </a>
+            </Link>
 
-            <a href="/" className={`${styles.iconButton} ${styles.instagram}`}>
+            <Link to="/" className={classNames(styles.iconButton, styles.instagram)}>
               <FaInstagram />
-              {/* <img src={IconInstagram} alt="Instagram" /> */}
-            </a>
+            </Link>
 
-            <a href="/" className={`${styles.iconButton} ${styles.youtube}`}>
+            <Link to="/" className={classNames(styles.iconButton, styles.youtube)}>
               <FaYoutube />
-              {/* <img src={IconYouTube} alt="YouTube" /> */}
-            </a>
+            </Link>
 
-            <a href="/" className={`${styles.iconButton} ${styles.pinterest}`}>
+            <Link to="/" className={classNames(styles.iconButton, styles.pinterest)}>
               <FaPinterest />
-              {/* <img src={IconPinterest} alt="Pinterest" /> */}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

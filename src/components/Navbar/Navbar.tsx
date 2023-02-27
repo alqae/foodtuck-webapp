@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './navbar.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
@@ -11,10 +12,10 @@ import {
   AiOutlineClose,
 } from 'react-icons/ai'
 
-import logo from '../../assets/images/Foodtuck.svg'
 import { AuthActions } from '../../store/reducers'
 import { useBodyScrollLock } from '../../hooks'
 import { RootState } from '../../store'
+import { Logo } from '../Logo'
 
 interface Props { }
 
@@ -32,36 +33,34 @@ const Navbar: React.FC<Props> = () => {
 
   return (
     <div className={styles.navbar}>
-      <div className={`container d--f jc--sb ai--c ${showMenu ? styles.open : styles.close}`}>
+      <div className={
+        classNames(
+          'container',
+          'd--f',
+          'jc--sb',
+          'ai--c',
+          {
+            [styles.open]: showMenu,
+            [styles.close]: !showMenu,
+          }
+        )}
+      >
         <Link to="/" className={styles.logo}>
-          <img src={logo} alt="Foodtuck" />
+          <Logo />
         </Link>
 
         <div className={styles.menu}>
-          <Link
+          <NavLink
             to="/"
-            className={styles.link}
-            // className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Home
-          </Link>
-          <NavLink
-            to="/menu"
-            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
-          >
-            Menu
           </NavLink>
           <NavLink
-            to="/blog"
+            to="/members"
             className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
-            Blog
-          </NavLink>
-          <NavLink
-            to="/pages"
-            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
-          >
-            Pages
+            Members
           </NavLink>
           <NavLink
             to="/about"
@@ -80,6 +79,12 @@ const Navbar: React.FC<Props> = () => {
             className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
           >
             Contact
+          </NavLink>
+          <NavLink
+            to="/faq"
+            className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ""}`}
+          >
+            FAQ
           </NavLink>
         </div>
 
@@ -103,7 +108,7 @@ const Navbar: React.FC<Props> = () => {
         </div>
 
         <button
-          className={`${styles.hamburguer} d--f ai--c`}
+          className={classNames(styles.hamburguer, 'd--f', 'ai--c')}
           onClick={() => setShowMenu(!showMenu)}
         >
           {showMenu ? <AiOutlineClose size="40px" /> : <GiHamburgerMenu size="40px" />}

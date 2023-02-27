@@ -76,7 +76,7 @@ $fonts: (
     ),
   ),
   body: (
-    large: (
+    xl: (
       "family": $font-family-sans-serif,
       "font-size-mobile": 20px,
       "font-size-desktop": 20px,
@@ -86,7 +86,7 @@ $fonts: (
       "line-height-desktop": 1.4,
       "text-transform": false,
     ),
-    medium: (
+    lg: (
       "family": $font-family-sans-serif,
       "font-size-mobile": 18px,
       "font-size-desktop": 18px,
@@ -96,7 +96,7 @@ $fonts: (
       "line-height-desktop": 1.45,
       "text-transform": false,
     ),
-    normal: (
+    md: (
       "family": $font-family-sans-serif,
       "font-size-mobile": 16px,
       "font-size-desktop": 16px,
@@ -106,7 +106,7 @@ $fonts: (
       "line-height-desktop": 1.35,
       "text-transform": false,
     ),
-    small: (
+    sm: (
       "family": $font-family-sans-serif,
       "font-size-mobile": 14px,
       "font-size-desktop": 14px,

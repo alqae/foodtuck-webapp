@@ -8,15 +8,14 @@ import { RouterProvider, createRoutesFromElements, createBrowserRouter } from 'r
 import { Fallback, FormLayout, Layout, NoMatch } from './components'
 import {
   Home,
-  Menu,
-  Blog,
-  Pages,
+  Members,
   About,
   Shop,
   Contact,
   SignUp,
   SignIn,
-  ForgotPassword
+  ForgotPassword,
+  Faq,
 } from './pages'
 
 // Import global styles
@@ -40,12 +39,11 @@ const router = createBrowserRouter(
 
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} breadcrumb="Home" />
-        <Route path="menu" element={<Menu />} breadcrumb="Menu" />
-        <Route path="blog" element={<Blog />} breadcrumb="Blog" />
-        <Route path="pages" element={<Pages />} breadcrumb="Pages" />
+        <Route path="members" element={<Members />} breadcrumb="Members" />
         <Route path="about" element={<About />} breadcrumb="About" />
         <Route path="shop" element={<Shop />} breadcrumb="Shop" />
         <Route path="contact" element={<Contact />} breadcrumb="Contact" />
+        <Route path="faq" element={<Faq />} breadcrumb="FAQ Page" />
         <Route path="*" element={<NoMatch />} breadcrumb="404 Error" />
       </Route>
     </Route>

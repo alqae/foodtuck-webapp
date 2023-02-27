@@ -1,0 +1,8 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/variables";
+@import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.eyebrow {
+  @include font(eyebrow, normal, map-get($theme-colors, primary));
+}

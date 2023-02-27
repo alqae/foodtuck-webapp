@@ -24,14 +24,14 @@
     }
 
     h3 {
-      @include font(body, large, $color-black);
+      @include font(body, xl, $color-black);
       font-weight: bold;
       margin-bottom: 32px;
     }
   }
 
   a {
-    @include font(body, small, map-get($grays, gray-600));
+    @include font(body, sm, map-get($grays, gray-600));
     text-decoration: none;
 
     &:hover {

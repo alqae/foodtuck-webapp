@@ -1,3 +1,5 @@
+import React from 'react'
+import classNames from 'classnames'
 import styles from './checkbox.module.scss'
 import { Control, Controller } from 'react-hook-form'
 
@@ -13,21 +15,17 @@ const Checkbox: React.FC<Props> = ({ name, control, label, required }) => (
     name={name}
     control={control}
     rules={{ required }}
-    render={({ field, fieldState: { error } }) => {
-      const checkedClass = field.value ? styles.checked : ''
-      const errorClass = error ? styles.error : ''
-      return (
-        <div className={`${styles.checkbox} ${errorClass} d--f ai--c`}>
-          <input
-            id={name}
-            type="checkbox"
-            className={checkedClass}
-            {...field}
-          />
-          <label htmlFor={name}>{label}</label>
-        </div>
-      )
-    }}
+    render={({ field, fieldState: { error } }) => (
+      <div className={classNames(styles.checkbox, { [styles.error]: error }, 'd--f', 'ai--c')}>
+        <input
+          id={name}
+          type="checkbox"
+          className={classNames({ [styles.checked]: field.value })}
+          {...field}
+        />
+        <label htmlFor={name}>{label}</label>
+      </div>
+    )}
   />
 )
 

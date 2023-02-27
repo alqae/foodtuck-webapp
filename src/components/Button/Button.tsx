@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './button.module.scss'
 
 interface Props {
@@ -23,15 +24,17 @@ const Button: React.FC<Props & React.DetailedHTMLProps<React.ButtonHTMLAttribute
 }) => {
   return (
     <button
-      className={`
-        ${styles.button}
-        ${soft && styles.soft}
-        ${rounded && styles.rounded}
-        ${fullWidth && styles.fullWidth}
-        ${circular && styles.circular}
-        ${transparent && styles.transparent}
-        ${className}
-      `} {...props}
+      className={classNames(
+        styles.button,
+        {
+          [styles.soft]: soft,
+          [styles.rounded]: rounded,
+          [styles.fullWidth]: fullWidth,
+          [styles.circular]: circular,
+          [styles.transparent]: transparent,
+          [className ?? '']: className,
+        },
+      )} {...props}
       >{children}
     </button>
   );

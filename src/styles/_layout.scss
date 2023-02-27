@@ -75,3 +75,8 @@
 .highlight {
   color: map-get($theme-colors, primary) !important;
 }
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}

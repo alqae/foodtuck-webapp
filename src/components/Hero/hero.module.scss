@@ -16,7 +16,7 @@
   overflow: hidden;
 
   @include media-breakpoint-up(md) {
-    height: calc(677px - 90px);
+    height: calc(100vh - 90px);
   }
 
   &::after {
@@ -112,16 +112,8 @@
         padding-top: 100px;
       }
 
-      span {
-        @include font(eyebrow, normal, map-get($theme-colors, primary));
-      }
-
-      h1 {
-        @include font(headings, xxl, $color-white);
-      }
-
       p {
-        @include font(body, normal, $color-white);
+        @include font(body, md, $color-white);
         max-width: 50%;
 
         @include media-breakpoint-up(md) {

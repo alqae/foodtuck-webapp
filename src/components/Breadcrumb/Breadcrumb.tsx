@@ -1,17 +1,18 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './breadcrumbs.module.scss'
+import { AiOutlineRight } from 'react-icons/ai'
 import useBreadcrumbs from 'use-react-router-breadcrumbs'
 
-import { AiOutlineRight } from 'react-icons/ai'
-
-interface Props { }
+interface Props {}
 
 const Breadcrumb: React.FC<Props> = () => {
-  const breadcrumbs = useBreadcrumbs();
+  const breadcrumbs = useBreadcrumbs()
 
   return (
-    <div className={`${styles.container} d--f fd--c jc--c ai--c`}>
+    <div className={classNames(styles.container, 'd--f', 'fd--c', 'jc--c', 'ai--c')}>
       {breadcrumbs[breadcrumbs.length - 1]?.breadcrumb}
+
       <div className={styles.breadcrumbs}>
         {breadcrumbs.map(({ breadcrumb, key }, index) => {
           const isLastIndex = index === (breadcrumbs.length - 1)

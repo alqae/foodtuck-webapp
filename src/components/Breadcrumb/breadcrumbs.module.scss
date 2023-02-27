@@ -22,7 +22,7 @@
 
   .breadcrumbs {
     span {
-      @include font(body, large, $color-white);
+      @include font(body, xl, $color-white);
     }
 
     svg {

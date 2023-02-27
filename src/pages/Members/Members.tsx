@@ -3,20 +3,20 @@ import { motion } from 'framer-motion'
 
 interface Props { }
 
-const Pages: React.FC<Props> = () => {
+const Members: React.FC<Props> = () => {
   return (
     <motion.div
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      initial={{ y: '100px' }}
+      animate={{ y: '0px' }}
       style={{ padding: '100px 0' }}
-      transition={{ delay: 0.25, duration: 0.5 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
       // exit={{ x: window.innerWidth, transition: { duration: 1 } }}
     >
-      <span>Pages</span>
+      <h1>Members</h1>
     </motion.div>
   )
 }
 
-Pages.defaultProps = {}
+Members.defaultProps = {}
 
-export default Pages
+export default Members
