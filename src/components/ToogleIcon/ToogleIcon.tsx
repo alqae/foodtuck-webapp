@@ -13,6 +13,7 @@ interface Props  extends Omit<React.ComponentProps<'div'>, 'className'> {
   classes?: string
   iconPosition?: 'left' | 'right'
   size?: number
+  className?: string
 }
 
 

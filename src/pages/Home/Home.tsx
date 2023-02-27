@@ -327,7 +327,7 @@ const Home: React.FC<Props> = () => {
               pagination={{ clickable: true }}
               watchOverflow={false}
               speed={1000}
-              spaceBetween={0}
+              spaceBetween={24}
               modules={[Autoplay, Pagination]}
               breakpoints={{
                 0: {
@@ -340,7 +340,6 @@ const Home: React.FC<Props> = () => {
                   enabled: false,
                 },
                 1024: {
-                  spaceBetween: 24,
                   slidesPerView: 4,
                 }
               }}

@@ -93,7 +93,7 @@ const Members: React.FC<Props> = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
         >
-          <img src={member.avatar} alt={member.name} />
+          <img className="w-100" src={member.avatar} alt={member.name} />
           <div className="text-center">
             <Heading level={4} size="xs" className="mt-1">{member.name}</Heading>
             <Paragraph as="span" size="lg" className="mt-1">{member.position}</Paragraph>
