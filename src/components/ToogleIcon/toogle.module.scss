@@ -19,14 +19,10 @@
   height: min-content;
   grid-column: 1;
   grid-row: 1;
-  max-height: 3rem;
-  max-width: 3rem;
 }
 
 .icon {
   z-index: auto;
-  width: 3rem;
-  height: 3rem;
   transform-style: preserve-3d;
   transform-origin: 100% 100%;
 }

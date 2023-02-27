@@ -66,7 +66,7 @@ const ToogleIcon: React.FC<Props> = ({
     >
       <AnimatePresence initial={false}>
         {!isToggled ? (
-          <motion.span
+          <motion.div
             key="toggle-icon-span-closed"
             initial={toggleIconClosed}
             animate={!shouldReduceMotion ? toggleIconOpen : toggleIconClosed}
@@ -75,7 +75,7 @@ const ToogleIcon: React.FC<Props> = ({
             className={styles.toggleSpan}
           >
             <IconClosed className={styles.icon} size={size} />
-          </motion.span>
+          </motion.div>
         ) : (
           <motion.span
             key="toggle-icon-span-open"

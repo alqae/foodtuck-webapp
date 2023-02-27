@@ -14,7 +14,7 @@ const Faq: React.FC<Props> = () => {
         whileInView={{ transform: "translateY(0)", opacity: 1 }}
         viewport={{ once: true }}
       >
-        <Heading level={1 }>Questions Looks Here</Heading>
+        <Heading level={1}>Questions Looks Here</Heading>
         <Paragraph>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </Paragraph>
       </motion.div>
 
@@ -25,14 +25,37 @@ const Faq: React.FC<Props> = () => {
           whileInView={{ transform: "translateX(0)", opacity: 1 }}
           viewport={{ once: true }}
         >
-          <ExpansionPanel title="How we serve food?">
-            <Paragraph>
+          <ExpansionPanel
+            className="mb-3"
+            title="How we serve food?"
+            description={`
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Nisi quis modi ullam amet debitis libero veritatis enim
               repellat optio natus eum delectus deserunt, odit expedita
               eos molestiae ipsa totam quidem?
-            </Paragraph>
-          </ExpansionPanel>
+            `}
+          />
+
+          <ExpansionPanel
+            className="mb-3"
+            title="How is our food quality?"
+            description={`
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Nisi quis modi ullam amet debitis libero veritatis enim
+              repellat optio natus eum delectus deserunt, odit expedita
+              eos molestiae ipsa totam quidem?
+            `}
+          />
+
+          <ExpansionPanel
+            title="How do we give home delivery?"
+            description={`
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Nisi quis modi ullam amet debitis libero veritatis enim
+              repellat optio natus eum delectus deserunt, odit expedita
+              eos molestiae ipsa totam quidem?
+            `}
+          />
         </motion.div>
 
         <motion.div
@@ -41,7 +64,37 @@ const Faq: React.FC<Props> = () => {
           whileInView={{ transform: "translateX(0)", opacity: 1 }}
           viewport={{ once: true }}
         >
-          Hola
+          <ExpansionPanel
+            className="mb-3"
+            title="How can we get in touch with you?"
+            description={`
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Nisi quis modi ullam amet debitis libero veritatis enim
+              repellat optio natus eum delectus deserunt, odit expedita
+              eos molestiae ipsa totam quidem?
+            `}
+          />
+
+          <ExpansionPanel
+            className="mb-3"
+            title="What will be delivered? And When?"
+            description={`
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Nisi quis modi ullam amet debitis libero veritatis enim
+              repellat optio natus eum delectus deserunt, odit expedita
+              eos molestiae ipsa totam quidem?
+            `}
+          />
+
+          <ExpansionPanel
+            title="Is this restaurant 24 hours open?"
+            description={`
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Nisi quis modi ullam amet debitis libero veritatis enim
+              repellat optio natus eum delectus deserunt, odit expedita
+              eos molestiae ipsa totam quidem?
+            `}
+          />
         </motion.div>
       </div>
     </section>

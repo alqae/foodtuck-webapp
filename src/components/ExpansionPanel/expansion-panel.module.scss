@@ -2,4 +2,12 @@
 
 .panel {
   background-color: $color-beige;
+  overflow: hidden;
+
+  .panelHeading {
+    z-index: 3;
+    cursor: pointer;
+    position: relative;
+    background-color: $color-beige;
+  }
 }
