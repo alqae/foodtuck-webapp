@@ -84,3 +84,27 @@ img {
 .w-100 {
   width: 100%;
 }
+
+.fw-normal {
+  font-weight: 400;
+}
+
+.fw-medim {
+  font-weight: 500;
+}
+
+.fw-semi-medim {
+  font-weight: 500;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+body {
+  scroll-behavior: smooth;
+}

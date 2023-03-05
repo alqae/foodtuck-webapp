@@ -52,7 +52,6 @@ const AnimatedCounter: React.FC<{ from: number, to: number }> = ({ from, to }) =
         duration: 1,
         onUpdate(value) {
           node.textContent = Math.round(value).toString();
-          console.warn(Math.round(value), Math.round(value).toFixed(2));
         }
       });
 
@@ -376,7 +375,7 @@ const Home: React.FC<Props> = () => {
 
         <Testimonials headingColor="white" />
 
-        <section className={styles.restraind}>
+        <section className={classNames(styles.restraind, 'd--f', 'ai--c', 'm-0')}>
           <div className="container d--f jc--fe">
             <div className={classNames(styles.box, 'pt-10', 'pb-10')}>
               <Eyebrow>Restaurant Active Process</Eyebrow>

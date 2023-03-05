@@ -1,19 +1,30 @@
-import styles from './nomatch.module.scss'
+import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+
+import { Paragraph } from '../Paragraph'
+import { Heading } from '../Heading'
 import { Button } from '../Button'
-import { Link } from 'react-router-dom'
 
 interface Props { }
 
 const NoMatch: React.FC<Props> = () => {
+  const navigate = useNavigate()
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.box}>
-        <span className={styles.title}>404</span>
-        <span className={styles.subtitle}>Oops! Look likes something going wrong</span>
-        <p>Page Cannot be found! we’ll have it figured out in no time. Menwhile, cheek out these fresh ideas:</p>
-        <Link to="/"><Button>Go to home</Button></Link>
-      </div>
-    </div>
+    <motion.section
+      className="text-center container"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.25, duration: 0.5 }}
+    >
+      <Paragraph color="primary" size="extra-xl" as="span">404</Paragraph>
+      <Heading level={3} className="mb-3" size="md">Oops! Look likes something going wrong</Heading>
+      <Paragraph className="mb-4">
+        Page Cannot be found! we'll have it figured out in no time.<br />
+        Menwhile, cheek out these fresh ideas:
+      </Paragraph>
+      <Button onClick={() => navigate('/', { replace: true })} rounded fullWidth={false}>Go to home</Button>
+    </motion.section>
   )
 }
 

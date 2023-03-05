@@ -7,16 +7,38 @@ interface Props {
   name: string
   label: string | React.ReactNode
   required: boolean
+  className?: string
   control: Control<any, any>
+  defaultValue?: boolean
+  onChange?: ((event: any) => void) | undefined
 }
 
-const Checkbox: React.FC<Props> = ({ name, control, label, required }) => (
+const Checkbox: React.FC<Props> = ({
+  name,
+  control,
+  label,
+  required,
+  className,
+  defaultValue,
+  onChange,
+}) => (
   <Controller
     name={name}
     control={control}
-    rules={{ required }}
+    rules={{ required, onChange }}
+    defaultValue={defaultValue}
     render={({ field, fieldState: { error } }) => (
-      <div className={classNames(styles.checkbox, { [styles.error]: error }, 'd--f', 'ai--c')}>
+      <div
+        className={classNames(
+          styles.checkbox,
+          {
+            [styles.error]: error,
+            [className ?? '']: className,
+          },
+          'd--f',
+          'ai--c',
+        )}
+      >
         <input
           id={name}
           type="checkbox"
@@ -33,6 +55,7 @@ Checkbox.defaultProps = {
   required: false,
   name: '',
   label: '',
+  defaultValue: false,
 }
 
 export default Checkbox

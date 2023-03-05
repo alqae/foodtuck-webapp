@@ -21,10 +21,10 @@ import { AuthActions } from './store/reducers'
 import { store } from './store'
 import App from './App'
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache()
 
 const request = async (operation: Operation) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
   operation.setContext({
     headers: {
       authorization: `Baerer ${token}`
@@ -34,7 +34,7 @@ const request = async (operation: Operation) => {
 
 const requestLink = new ApolloLink((operation, forward) =>
   new Observable((observer) => {
-    let handle: ObservableSubscription;
+    let handle: ObservableSubscription
     Promise.resolve(operation)
       .then(oper => request(oper))
       .then(() => {
@@ -42,7 +42,7 @@ const requestLink = new ApolloLink((operation, forward) =>
           next: observer.next.bind(observer),
           error: observer.error.bind(observer),
           complete: observer.complete.bind(observer),
-        });
+        })
       })
       .catch(observer.error.bind(observer))
 
@@ -61,7 +61,7 @@ const client = new ApolloClient({
           console.log(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
-        );
+        )
 
         if (networkError) {
           console.log(`[Network error]: ${networkError}`)
@@ -79,7 +79,7 @@ const client = new ApolloClient({
     Mutation: {
       updateNetworkStatus: (_, { isConnected }, { cache }) => {
         cache.writeData({ data: { isConnected }})
-        return null;
+        return null
       }
     }
   },
@@ -96,9 +96,9 @@ root.render(
       </Provider>
     </PersistGate>
   </ApolloProvider>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

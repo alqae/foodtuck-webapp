@@ -1,0 +1,29 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/colors";
+
+.searchInput, .option, .valueContainer {
+  @include font(body, md);
+}
+
+.menuList {
+  max-height: 300px;
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 999;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba($color: map-get($theme-colors, primary), $alpha: 0.1);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: map-get($theme-colors, primary);
+  }
+}

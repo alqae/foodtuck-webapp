@@ -1,0 +1,33 @@
+@import "../../styles/base/colors";
+
+.searchBar {
+  height: 46px;
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  input[type="search"] {
+    height: 100%;
+    border: none;
+    background-color: rgba($color: map-get($theme-colors, primary), $alpha: 0.1);
+    padding: 11px 20px;
+    outline: none;
+    width: calc(100% - 46px);
+    color: $color-black;
+
+    &::placeholder {
+      color: map-get($grays, gray-600);
+    }
+  }
+
+  button {
+    border-radius: 0;
+    padding: 13px;
+    height: 100%;
+    width: 46px;
+  }
+}

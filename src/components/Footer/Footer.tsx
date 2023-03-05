@@ -14,6 +14,7 @@ import {
 
 import ImageCardPlaceholder from '../../assets/images/card-image-placeholder.png'
 
+import { ButtonIcon } from '../ButtonIcon'
 import { Paragraph } from '../Paragraph'
 import { CardIcon } from '../CardIcon'
 import { Heading } from '../Heading'
@@ -139,30 +140,41 @@ const Footer: React.FC<Props> = () => {
         </div>
       </div>
 
-      <div className={styles.copyRightAndSocial}>
+      <div className={classNames(styles.copyRightAndSocial, 'pt-4', 'pb-4')}>
         <div className="container d--f jc--sb ai--c">
-          <Paragraph color="white">{`Copyright © ${year} by Ayeman. All Rights Reserved.`}</Paragraph>
+          <Paragraph color="white">Copyright ©{year} by Ayeman. All Rights Reserved.</Paragraph>
 
           <div className="social d--f ai--c">
-            <Link to="/" className={classNames(styles.iconButton, styles.facebook)}>
-              <FaFacebookF />
-            </Link>
-
-            <Link to="/" className={classNames(styles.iconButton, styles.twitter)}>
-              <FaTwitter />
-            </Link>
-
-            <Link to="/" className={classNames(styles.iconButton, styles.instagram)}>
-              <FaInstagram />
-            </Link>
-
-            <Link to="/" className={classNames(styles.iconButton, styles.youtube)}>
-              <FaYoutube />
-            </Link>
-
-            <Link to="/" className={classNames(styles.iconButton, styles.pinterest)}>
-              <FaPinterest />
-            </Link>
+            <ButtonIcon
+              size={16}
+              color="secondary"
+              icon={FaFacebookF}
+              className={classNames(styles.iconButton, 'mr-2', styles.facebook)}
+            />
+            <ButtonIcon
+              size={16}
+              color="secondary"
+              icon={FaTwitter}
+              className={classNames(styles.iconButton, 'mr-2', styles.twitter)}
+            />
+            <ButtonIcon
+              size={16}
+              color="secondary"
+              icon={FaInstagram}
+              className={classNames(styles.iconButton, 'mr-2', styles.instagram)}
+            />
+            <ButtonIcon
+              size={16}
+              color="secondary"
+              icon={FaYoutube}
+              className={classNames(styles.iconButton, 'mr-2', styles.youtube)}
+            />
+            <ButtonIcon
+              size={16}
+              color="secondary"
+              icon={FaPinterest}
+              className={classNames(styles.iconButton, styles.pinterest)}
+            />
           </div>
         </div>
       </div>

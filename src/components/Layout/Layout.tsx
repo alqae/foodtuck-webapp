@@ -9,6 +9,7 @@ import { Breadcrumb } from '../Breadcrumb'
 import { RootState } from '../../store'
 import { Footer } from '../Footer'
 import { Navbar } from '../Navbar'
+import { Box } from '@chakra-ui/react'
 
 interface Props {
   children?: React.ReactNode
@@ -41,11 +42,11 @@ const Layout: React.FC<Props> = () => {
         {!isIndexPage && <Breadcrumb />}
       </header>
 
-      <main className={styles.layout}>
+      <Box className={styles.layout} id="layout">
         <AnimatePresence>
           <Outlet />
         </AnimatePresence>
-      </main>
+      </Box>
 
       <Footer />
     </>

@@ -2,18 +2,22 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 
-import { sharedReducer, authReducer } from './reducers'
+import { sharedReducer, authReducer, searchReducer } from './reducers'
 
 const reducer = combineReducers({
   auth: authReducer,
   shared: sharedReducer,
+  search: searchReducer,
   /* Reducers go here */
 })
 const middleware = process.env.NODE_ENV === 'development' ? [
   /* Development middleware */
-  logger
+  logger,
+  thunk,
 ] : [
+  thunk,
   /* Production middleware */
 ]
 

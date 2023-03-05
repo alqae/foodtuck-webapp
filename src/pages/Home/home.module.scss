@@ -114,11 +114,12 @@
   }
 
   .restraind {
-    text-align: right;
     background-image: url(../../assets/images/restraind-background.png);
-    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 100% 100%;
+    text-align: right;
+    height: 450px;
 
     @include media-breakpoint-down(md) {
       background-size: cover;
@@ -129,5 +130,9 @@
         width: 55%;
       }
     }
+  }
+
+  section:last-child {
+    padding: 0 !important;
   }
 }

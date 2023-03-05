@@ -106,36 +106,5 @@
 }
 
 .copyRightAndSocial {
-  padding-top: 32px;
-  padding-bottom: 34px;
   background-color: map-get($grays, gray-400);
-
-  .iconButton {
-    background-color: $color-white;
-    border-radius: 2px;
-    width: 35px;
-    height: 33px;
-    margin-right: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    svg {
-      width: 20px;
-      height: 20px;
-      fill: map-get($grays, gray-400);
-
-      &:hover {
-        fill: map-get($theme-colors, primary);
-      }
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
 }

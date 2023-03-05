@@ -21,15 +21,9 @@ interface UserSignUpForm {
 }
 
 const formSchema = Yup.object().shape({
-  email: Yup.string()
-    .required("Email is required")
-    .email("Email is invalid"),
-  password: Yup.string()
-    .required("Password is required")
-    .min(8, "Password length should be at least 8 characters")
-    .max(12, "Password cannot exceed more than 12 characters"),
-  rememberMe: Yup.boolean()
-    .optional()
+  email: Yup.string().required("Email is required").email("Email is invalid"),
+  password: Yup.string().required("Password is required"),
+  rememberMe: Yup.boolean().optional()
 })
 
 const SignIn: React.FC<Props> = () => {
@@ -45,7 +39,7 @@ const SignIn: React.FC<Props> = () => {
       rememberMe: false
     },
     resolver: yupResolver(formSchema)
-  });
+  })
 
   React.useEffect(() => {
     const token = searchParams.get('token')
@@ -104,7 +98,7 @@ const SignIn: React.FC<Props> = () => {
         success: 'Login successfully',
         error: (error) => <b>{error.message}</b>,
       }
-    );
+    )
   }
 
   return (
@@ -151,7 +145,7 @@ const SignIn: React.FC<Props> = () => {
         Forgot password?
       </Link>
     </motion.div>
-  );
+  )
 }
 
 SignIn.defaultProps = {}

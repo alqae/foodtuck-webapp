@@ -1,0 +1,72 @@
+@import "../../styles/base/fonts";
+// @import "../../styles/base/variables";
+// @import "../../styles/base/helpers";
+@import "../../styles/base/colors";
+
+.results {
+  gap: 24px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.sideBar {
+  border: 1px solid #F2F2F2;
+  border-radius: 6px;
+
+  .badgeContainer {
+    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.pagination {
+  li {
+    display: inline-block;
+    margin-right: 14px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.active {
+      color: map-get($theme-colors, primary);
+
+      a {
+        background-color: map-get($theme-colors, primary);
+        border-color: map-get($theme-colors, primary);
+        color: $color-white;
+      }
+    }
+
+    a {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #F2F2F2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      @include font(body, md);
+
+      svg {
+        fill: map-get($theme-colors, primary);
+      }
+    }
+
+    &.disabled {
+
+      a {
+        cursor: not-allowed;
+
+        svg {
+          fill: #F2F2F2;
+        }
+      }
+    }
+  }
+}

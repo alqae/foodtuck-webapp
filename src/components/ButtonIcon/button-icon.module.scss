@@ -1,0 +1,41 @@
+@import "../../styles/base/fonts";
+@import "../../styles/base/colors";
+
+.buttonIcon {
+  border: none;
+  border-radius: 2px;
+  height: 34px;
+  width: 40px;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  transition-property: border background-color color;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.primary {
+    background-color: map-get($theme-colors, primary);
+    border-color: map-get($theme-colors, primary);
+    color: $color-white;
+  }
+
+  &.secondary {
+    border-color: $color-white;
+    background-color: $color-white;
+    color: map-get($theme-colors, primary);
+  }
+
+  &:hover {
+    background-color: transparent;
+    color: map-get($theme-colors, primary);
+    border-color: map-get($theme-colors, primary);
+  }
+}

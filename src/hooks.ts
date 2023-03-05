@@ -39,14 +39,40 @@ export const useMediaQuery = (query: string) => {
       } else {
         media.removeListener(listener)
       }
-    };
-  }, [matches, query]);
+    }
+  }, [matches, query])
 
-  return matches;
+  return matches
 }
 
-export const useIsSmall = () => useMediaQuery('(min-width: 480px)');
-export const useIsMedium = () => useMediaQuery('(min-width: 768px)');
+type Timer = ReturnType<typeof setTimeout>
+type SomeFunction = (...args: any[]) => void
+export const useDebounce = <Func extends SomeFunction>(
+  func: Func,
+  delay = 1000
+): Func => {
+  const timer = React.useRef<Timer>()
+
+  React.useEffect(() => {
+    return () => {
+      if (!timer.current) return
+      clearTimeout(timer.current)
+    }
+  }, [])
+
+  const debouncedFunction = ((...args) => {
+    const newTimer = setTimeout(() => {
+      func(...args)
+    }, delay)
+    clearTimeout(timer.current)
+    timer.current = newTimer
+  }) as Func
+
+  return debouncedFunction
+}
+
+export const useIsSmall = () => useMediaQuery('(min-width: 480px)')
+export const useIsMedium = () => useMediaQuery('(min-width: 768px)')
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => AppDispatch = useDispatch

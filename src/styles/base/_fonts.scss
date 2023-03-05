@@ -75,6 +75,18 @@ $fonts: (
       "text-transform": false,
     ),
   ),
+  extra: (
+    noMatch: (
+      "family": $font-family-sans-serif,
+      "font-size-mobile": 80px,
+      "font-size-desktop": 96px,
+      "font-weight": 700,
+      "letter-spacing": normal,
+      "line-height-mobile": 1.08,
+      "line-height-desktop": 1.08,
+      "text-transform": false,
+    ),
+  ),
   body: (
     xl: (
       "family": $font-family-sans-serif,

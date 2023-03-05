@@ -76,9 +76,8 @@ const Testimonials: React.FC<Props> = ({ headingColor }) => {
         }}
       >
         {testimonials.map((testimonial) => (
-          <SwiperSlide>
+          <SwiperSlide key={testimonial.id}>
             <div
-              key={testimonial.id}
               className={classNames(
                 styles.slide,
                 'mt-8', 'mb-8', 'd--f', 'ai--c', 'fd--c', 'pb-4', 'pl-12', 'pr-12', 'text-center',

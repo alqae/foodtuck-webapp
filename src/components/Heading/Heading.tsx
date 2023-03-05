@@ -17,7 +17,7 @@ const Heading: React.FC<Props> = ({ children, level, size, className, color }) =
       className={classNames(
         { [styles[size ?? 'xxl']]: size },
         { [styles[color ?? 'black']]: color },
-        { [styles[className ?? '']]: className },
+        { [className ?? '']: className },
       )}
     >{children}</TagName>
   )

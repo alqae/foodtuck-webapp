@@ -1,6 +1,9 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './navbar.module.scss'
+import { VscSignIn } from 'react-icons/vsc'
+import { FaSignInAlt } from 'react-icons/fa'
+import { isMobile } from 'react-device-detect'
 import { Link, NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,13 +11,12 @@ import { motion, useCycle, useReducedMotion } from 'framer-motion'
 import {
   AiOutlineSearch,
   AiOutlineUser,
-  AiOutlineShopping,
-  AiOutlineLogout,
   AiOutlineClose,
+  AiOutlineShoppingCart,
 } from 'react-icons/ai'
 
-import { useBodyScrollLock, useIsSmall } from '../../hooks'
 import { AuthActions } from '../../store/reducers'
+import { useBodyScrollLock } from '../../hooks'
 import { ToogleIcon } from '../ToogleIcon'
 import { RootState } from '../../store'
 import { Logo } from '../Logo'
@@ -33,17 +35,24 @@ const Navbar: React.FC<Props> = () => {
   React.useEffect(() => {
     toogleScroll(expanded)
   }, [expanded, toogleScroll])
-  console.warn(useIsSmall());
-  const variants = useIsSmall()
+
+  const menuOptions = [
+    {
+      label: 'My Account',
+      to: '/account',
+    }
+  ]
+
+  const variants = isMobile
     ? {
       initial: { transform: 'translateX(-100%)' },
       whileInView: { transform: 'translateX(0%)' },
       exit: { transform: 'translateX(-100%)' }
-    }
-    : {
+    } : {
       initial: { transform: 'translateY(-100%)' },
       whileInView: { transform: 'translateY(0%)' },
-      exit: { transform: 'translateY(100%)' }
+      exit: { transform: 'translateY(100%)' },
+      viewport: { once: true }
     }
 
   return (
@@ -105,24 +114,33 @@ const Navbar: React.FC<Props> = () => {
           </NavLink>
         </motion.div>
 
-        <div className={styles.actions}>
-          <Link className={styles.link} to="search">
+        <motion.div className={styles.actions} {...variants}>
+          <Link className={styles.link} to="shop">
             <AiOutlineSearch size="24px" />
           </Link>
-          <Link className={styles.link} to="profile">
-            <AiOutlineUser size="24px" />
-          </Link>
+
           <Link className={styles.link} to="car">
-            <AiOutlineShopping size="24px" />
+            <AiOutlineShoppingCart size="24px" />
           </Link>
+
           {
             isAuth ? (
-              <div className={styles.link} onClick={logOut}>
-                <AiOutlineLogout size="24px" />
-              </div>
-            ) : <React.Fragment />
+              <>
+                <Link className={styles.link} to="profile">
+                  <AiOutlineUser size="24px" />
+                </Link>
+
+                <div className={styles.link} onClick={logOut}>
+                  <FaSignInAlt size="24px" />
+                </div>
+              </>
+            ) : (
+              <Link className={styles.link} to="/auth/sign-in">
+                <VscSignIn size="24px" />
+              </Link>
+            )
           }
-        </div>
+        </motion.div>
 
         <ToogleIcon
           className={classNames(styles.hamburguer, 'd--f', 'ai--c')}

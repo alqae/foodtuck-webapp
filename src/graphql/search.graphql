@@ -1,0 +1,37 @@
+query Search(
+  $name: String,
+  $maxPrice: Float,
+  $minPrice: Float,
+  $categories: [String!],
+  $tags: [String!],
+) {
+  search(
+    name: $name,
+    categories: $categories,
+    tags: $tags,
+    maxPrice: $maxPrice,
+  	minPrice: $minPrice,
+  ) {
+    id
+    name
+    description
+    price
+    image
+    rating
+    stock
+    quantity
+  }
+}
+
+query FindProductById($productId: Float!) {
+  product(id: $productId) {
+    id
+    name
+    description
+    price
+    image
+    rating
+    stock
+    quantity
+  }
+}

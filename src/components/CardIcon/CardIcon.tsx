@@ -36,6 +36,7 @@ const CardIcon: React.FC<Props> = ({
         <Icon />
       </div>
       <Paragraph
+        as='span'
         className={classNames({
           'mt-1 text-center': horientation === 'vertical',
           'ml-2': horientation === 'horizontal',

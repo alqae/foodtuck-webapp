@@ -18,6 +18,7 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   activeUser: SignInSuccess;
+  createProduct: Product;
   forgotPassword: Scalars['Boolean'];
   resetPassword: Scalars['Boolean'];
   revokeRefreshTokensForUser: Scalars['Boolean'];
@@ -28,6 +29,17 @@ export type Mutation = {
 
 export type MutationActiveUserArgs = {
   token: Scalars['String'];
+};
+
+
+export type MutationCreateProductArgs = {
+  description: Scalars['String'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['String'];
+  quantity: Scalars['Float'];
+  rating: Scalars['Float'];
+  stock: Scalars['Float'];
 };
 
 
@@ -60,11 +72,39 @@ export type MutationSignUpArgs = {
   password: Scalars['String'];
 };
 
+export type Product = {
+  __typename?: 'Product';
+  description: Scalars['String'];
+  id: Scalars['Int'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['String'];
+  quantity: Scalars['Float'];
+  rating: Scalars['Float'];
+  stock: Scalars['Float'];
+};
+
 export type Query = {
   __typename?: 'Query';
   bye: Scalars['String'];
   hello: Scalars['String'];
+  product: Product;
+  search: Array<Product>;
   users: Array<User>;
+};
+
+
+export type QueryProductArgs = {
+  id: Scalars['Float'];
+};
+
+
+export type QuerySearchArgs = {
+  categories?: InputMaybe<Array<Scalars['String']>>;
+  maxPrice?: InputMaybe<Scalars['Float']>;
+  minPrice?: InputMaybe<Scalars['Float']>;
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type SignInSuccess = {
@@ -125,6 +165,24 @@ export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type HelloQuery = { __typename?: 'Query', hello: string };
+
+export type SearchQueryVariables = Exact<{
+  name?: InputMaybe<Scalars['String']>;
+  maxPrice?: InputMaybe<Scalars['Float']>;
+  minPrice?: InputMaybe<Scalars['Float']>;
+  categories?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type SearchQuery = { __typename?: 'Query', search: Array<{ __typename?: 'Product', id: number, name: string, description: string, price: string, image: string, rating: number, stock: number, quantity: number }> };
+
+export type FindProductByIdQueryVariables = Exact<{
+  productId: Scalars['Float'];
+}>;
+
+
+export type FindProductByIdQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: number, name: string, description: string, price: string, image: string, rating: number, stock: number, quantity: number } };
 
 
 export const SignUpDocument = gql`
@@ -328,3 +386,97 @@ export function useHelloLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Hell
 export type HelloQueryHookResult = ReturnType<typeof useHelloQuery>;
 export type HelloLazyQueryHookResult = ReturnType<typeof useHelloLazyQuery>;
 export type HelloQueryResult = Apollo.QueryResult<HelloQuery, HelloQueryVariables>;
+export const SearchDocument = gql`
+    query Search($name: String, $maxPrice: Float, $minPrice: Float, $categories: [String!], $tags: [String!]) {
+  search(
+    name: $name
+    categories: $categories
+    tags: $tags
+    maxPrice: $maxPrice
+    minPrice: $minPrice
+  ) {
+    id
+    name
+    description
+    price
+    image
+    rating
+    stock
+    quantity
+  }
+}
+    `;
+
+/**
+ * __useSearchQuery__
+ *
+ * To run a query within a React component, call `useSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *      maxPrice: // value for 'maxPrice'
+ *      minPrice: // value for 'minPrice'
+ *      categories: // value for 'categories'
+ *      tags: // value for 'tags'
+ *   },
+ * });
+ */
+export function useSearchQuery(baseOptions?: Apollo.QueryHookOptions<SearchQuery, SearchQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
+      }
+export function useSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchQuery, SearchQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
+        }
+export type SearchQueryHookResult = ReturnType<typeof useSearchQuery>;
+export type SearchLazyQueryHookResult = ReturnType<typeof useSearchLazyQuery>;
+export type SearchQueryResult = Apollo.QueryResult<SearchQuery, SearchQueryVariables>;
+export const FindProductByIdDocument = gql`
+    query FindProductById($productId: Float!) {
+  product(id: $productId) {
+    id
+    name
+    description
+    price
+    image
+    rating
+    stock
+    quantity
+  }
+}
+    `;
+
+/**
+ * __useFindProductByIdQuery__
+ *
+ * To run a query within a React component, call `useFindProductByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindProductByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindProductByIdQuery({
+ *   variables: {
+ *      productId: // value for 'productId'
+ *   },
+ * });
+ */
+export function useFindProductByIdQuery(baseOptions: Apollo.QueryHookOptions<FindProductByIdQuery, FindProductByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindProductByIdQuery, FindProductByIdQueryVariables>(FindProductByIdDocument, options);
+      }
+export function useFindProductByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductByIdQuery, FindProductByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindProductByIdQuery, FindProductByIdQueryVariables>(FindProductByIdDocument, options);
+        }
+export type FindProductByIdQueryHookResult = ReturnType<typeof useFindProductByIdQuery>;
+export type FindProductByIdLazyQueryHookResult = ReturnType<typeof useFindProductByIdLazyQuery>;
+export type FindProductByIdQueryResult = Apollo.QueryResult<FindProductByIdQuery, FindProductByIdQueryVariables>;

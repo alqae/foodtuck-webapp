@@ -10,6 +10,8 @@ interface Props {
   name: string
   label: string
   placeholder?: string
+  min?: number
+  max?: number
   rules?: Omit<RegisterOptions<any, string>, "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"> | undefined
   control: Control<any, any>
   suffixIcon?: React.ReactNode
@@ -23,12 +25,12 @@ const Field: React.FC<Props> = ({
   control,
   suffixIcon,
   rules,
+  min,
+  max,
 }) => {
   const [isFocused, setIsFocused] = React.useState(false);
 
   switch (type) {
-    // case value:
-    //   break;
     default: // Text, number
       return (
         <Controller

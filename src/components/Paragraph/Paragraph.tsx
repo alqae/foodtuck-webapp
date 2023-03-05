@@ -5,9 +5,10 @@ import styles from './paragraph.module.scss'
 interface Props {
   className?: string
   children?: React.ReactNode
-  as?: 'p' | 'span' | 'div' | 'li'
-  size?: 'xl' | 'lg' | 'md' | 'sm'
+  as?: 'p' | 'span' | 'div' | 'li' | 'label'
+  size?: 'xl' | 'lg' | 'md' | 'sm' | 'extra-xl'
   color?: 'black' | 'primary' | 'secondary' | 'white' | 'gray'
+  onClick?: () => void
 }
 
 const Paragraph: React.FC<Props> = ({
@@ -16,16 +17,26 @@ const Paragraph: React.FC<Props> = ({
   color,
   size,
   as,
+  ...props
 }) => {
   const TagName = `${as}` as keyof JSX.IntrinsicElements
-  return <TagName className={classNames(
-    styles.paragraph,
-    {
-      [className ?? '']: className,
-      [styles[`color-${color}`]]: color,
-      [styles[`size-${size}`]]: size,
-    },
-  )}>{children}</TagName>
+  return (
+    <TagName
+      className={
+        classNames(
+          styles.paragraph,
+          {
+            [className ?? '']: className,
+            [styles[`color-${color}`]]: color,
+            [styles[`size-${size}`]]: size,
+          },
+        )
+      }
+      {...props}
+    >
+      {children}
+    </TagName>
+  )
 }
 
 Paragraph.defaultProps = {
